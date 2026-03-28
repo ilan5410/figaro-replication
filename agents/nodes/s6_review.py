@@ -51,13 +51,19 @@ def run_s6_review(state: PipelineState) -> PipelineState:
     task_message = f"""
 Review the FIGARO employment content replication outputs for year {year}.
 
-**Do NOT list files or read files one by one before starting. All file paths are known — write a verification script immediately.**
+**TOOL USAGE RULES — follow exactly:**
+1. Use `execute_python` for ALL numerical work (loading CSVs, computing checks, printing results)
+2. Use `write_file` ONLY to save outputs/review_report.md
+3. NEVER use `read_file` on any CSV or matrix file — those are too large for context; load them in Python scripts instead
+4. NEVER use `list_directory` — all paths are given below
 
-Write ONE Python script that loads all data, runs all numerical checks (sections 7.1–7.5
-from your system prompt), and prints a structured summary of PASS/WARN/FAIL results.
-Execute that script, then write outputs/review_report.md based on the printed output.
+**Workflow (3 steps only):**
+Step 1 — execute_python: Write and run ONE script that loads all data files, runs every
+         check in sections 7.1–7.5 of your system prompt, and prints structured PASS/WARN/FAIL output.
+Step 2 — write_file: Save outputs/review_report.md using the printed check results.
+Step 3 — Stop. Do not run more scripts or re-read anything.
 
-Input files (all exist, use these exact paths):
+Input files (all exist, load with pandas in Python):
   - data/prepared/Z_EU.csv              — {n_total}×{n_total} matrix (index_col=0)
   - data/prepared/e_nonEU.csv           — col: e_nonEU_MIO_EUR
   - data/prepared/x_EU.csv              — col: x_EU_MIO_EUR
@@ -65,15 +71,15 @@ Input files (all exist, use these exact paths):
   - data/prepared/metadata.json         — keys: eu_countries, cpa_codes, n_total
   - data/model/A_EU.csv                 — technical coefficients (index_col=0)
   - data/model/L_EU.csv                 — Leontief inverse (index_col=0)
-  - data/model/d_EU.csv                 — employment coefficients (index_col=0)
+  - data/model/d_EU.csv                 — col: d_THS_PER_per_MIO_EUR
   - data/model/em_exports_total.csv     — employment content of exports (index_col=0)
   - data/model/em_exports_country_matrix.csv — 28×28 (index_col=0)
   - data/decomposition/country_decomposition.csv — cols: country, total_employment_THS,
       total_in_country_THS, total_by_country_THS, domestic_effect_THS,
       spillover_received_THS, spillover_generated_THS, spillover_share_pct
 
-After writing the report, stop. Do not re-read files or run additional scripts.
-Report: PASS/WARN/FAIL counts, any FAILs found (True/False), 2-3 sentence assessment.
+Note: Z_EU and L_EU are large ({n_total}×{n_total}). Load them with pd.read_csv(..., index_col=0)
+and convert to numpy with .values for matrix operations. Avoid printing them.
 """
 
     # Clean up scripts from previous runs of this stage
@@ -111,11 +117,13 @@ Report: PASS/WARN/FAIL counts, any FAILs found (True/False), 2-3 sentence assess
         # Invoke the agent
         result = agent.invoke(
             {"messages": [{"role": "user", "content": task_message}]},
-            config={"recursion_limit": 12},  # write(1)+execute(1)+write_report(1)+fix(1) = ~8 steps
+            config={"recursion_limit": 20},  # execute_python(1) + write_file(1) + fix pass(4) = ~10 steps
         )
 
         elapsed = time.time() - t0
-        log.info(f"Review agent completed in {elapsed:.1f}s")
+        n_messages = len(result.get("messages", []))
+        n_steps = (n_messages - 1)  # first message is the user prompt
+        log.info(f"Review agent completed in {elapsed:.1f}s ({n_steps} steps used of limit 20)")
 
         # Extract the final message
         final_message = result["messages"][-1].content if result.get("messages") else ""

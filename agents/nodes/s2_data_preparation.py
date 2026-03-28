@@ -131,7 +131,8 @@ After preparing, run verification checks and print:
             config={"recursion_limit": 25},  # max ~12 tool calls
         )
         elapsed = time.time() - t0
-        log.info(f"Data preparation agent completed in {elapsed:.1f}s")
+        n_steps = len(result.get("messages", [])) - 1
+        log.info(f"Data preparation agent completed in {elapsed:.1f}s ({n_steps} steps used of limit 25)")
 
         # Check output files
         prepared_paths = {}

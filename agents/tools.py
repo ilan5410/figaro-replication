@@ -124,6 +124,7 @@ def read_file(path: str, max_chars: int = 5000) -> dict:
       exists       - True if file exists
       error        - Error message if something went wrong (else None)
     """
+    log.info(f"[read_file] {path}")
     full_path = REPO_ROOT / path if not Path(path).is_absolute() else Path(path)
 
     if not full_path.exists():
@@ -204,13 +205,14 @@ def write_file(path: str, content: str) -> dict:
       size_bytes - Number of bytes written
       error      - Error message if failed (else None)
     """
+    log.info(f"[write_file] {path} ({len(content)} chars)")
     full_path = REPO_ROOT / path if not Path(path).is_absolute() else Path(path)
     full_path.parent.mkdir(parents=True, exist_ok=True)
 
     try:
         full_path.write_text(content, encoding="utf-8")
         size = full_path.stat().st_size
-        log.info(f"Wrote {size} bytes to {full_path}")
+        log.info(f"[write_file] wrote {size} bytes to {path}")
         return {"success": True, "path": str(full_path), "size_bytes": size, "error": None}
     except Exception as e:
         log.error(f"write_file failed for {path}: {e}")
@@ -232,6 +234,7 @@ def list_directory(path: str = ".") -> dict:
     """
     full_path = REPO_ROOT / path if not Path(path).is_absolute() else Path(path)
 
+    log.info(f"[list_directory] {path}")
     if not full_path.exists():
         return {"entries": [], "total": 0, "error": f"Directory not found: {path}"}
     if not full_path.is_dir():
