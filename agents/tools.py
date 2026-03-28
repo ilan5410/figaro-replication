@@ -69,8 +69,10 @@ def make_execute_python(timeout: int = 300, stage_name: str = "unknown"):
                 timeout=timeout,
                 cwd=str(REPO_ROOT),
             )
-            stdout = result.stdout[-5000:] if len(result.stdout) > 5000 else result.stdout
-            stderr = result.stderr[-2000:] if len(result.stderr) > 2000 else result.stderr
+            # Aggressively truncate — large stdout floods the context window and
+            # causes token/rate-limit explosions after many tool calls (see run notes).
+            stdout = result.stdout[-800:] if len(result.stdout) > 800 else result.stdout
+            stderr = result.stderr[-600:] if len(result.stderr) > 600 else result.stderr
 
             if result.returncode != 0:
                 log.warning(f"[{stage_name}] Script failed (rc={result.returncode})")
@@ -141,16 +143,18 @@ def read_file(path: str, max_chars: int = 5000) -> dict:
 
     size = full_path.stat().st_size
 
-    # For large CSV files, return a smart summary
+    # For large CSV files, return a smart summary (never raw data)
     if full_path.suffix in (".csv", ".tsv") and size > 50_000:
         try:
             import pandas as pd
             df = pd.read_csv(full_path, nrows=5)
-            full_df = pd.read_csv(full_path)
+            # Count rows without loading full file
+            with open(full_path) as f:
+                n_rows = sum(1 for _ in f) - 1
             summary = (
-                f"Shape: {full_df.shape}\n"
-                f"Columns: {list(full_df.columns)}\n"
-                f"dtypes: {dict(full_df.dtypes.astype(str))}\n"
+                f"Shape: ({n_rows}, {len(df.columns)})\n"
+                f"Columns: {list(df.columns)}\n"
+                f"dtypes: {dict(df.dtypes.astype(str))}\n"
                 f"Head (5 rows):\n{df.to_string()}"
             )
             return {"content": summary[:max_chars], "size_bytes": size, "exists": True, "error": None}

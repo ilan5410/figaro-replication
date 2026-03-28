@@ -137,15 +137,26 @@ def validate_stage2(state: dict) -> tuple[bool, list[str]]:
     except Exception as e:
         errors.append(f"Z_EU validation error: {e}")
 
-    # e_nonEU
+    # e_nonEU — FIGARO data legitimately has small negatives (CIF/FOB adjustments)
     try:
         e = pd.read_csv(prepared_dir / "e_nonEU.csv")
         if len(e) != n_total:
             errors.append(f"e_nonEU length {len(e)}, expected {n_total}")
         e_vals = e.iloc[:, -1].values.astype(float)
-        if np.any(e_vals < -1e-10):
-            errors.append(f"e_nonEU has {np.sum(e_vals < 0)} negative values")
-        log.info(f"e_nonEU: {len(e)} rows, sum: {e_vals.sum():.1f}")
+        n_neg = np.sum(e_vals < -1e-10)
+        if n_neg > 0:
+            neg_sum = e_vals[e_vals < 0].sum()
+            log.warning(
+                f"e_nonEU has {n_neg} negative values (sum={neg_sum:.2f} MIO_EUR) "
+                f"— likely CIF/FOB adjustments; clipped to 0 downstream"
+            )
+            # Hard FAIL only if negatives are large (more than 1% of total absolute sum)
+            if abs(neg_sum) > 0.01 * abs(e_vals).sum():
+                errors.append(
+                    f"e_nonEU has large negatives: {n_neg} values, sum={neg_sum:.1f} MIO_EUR "
+                    f"({abs(neg_sum)/abs(e_vals).sum()*100:.1f}% of total) — investigate"
+                )
+        log.info(f"e_nonEU: {len(e)} rows, sum: {e_vals.sum():.1f}, negatives: {n_neg}")
     except Exception as e_err:
         errors.append(f"e_nonEU validation error: {e_err}")
 

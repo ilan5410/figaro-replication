@@ -95,7 +95,16 @@ Before declaring done:
 
 ## Style
 
-Write multi-line Python logic as complete scripts, then execute them.
+**Write ONE comprehensive script that does everything end-to-end, then execute it.**
+Do NOT write multiple small exploratory/probe scripts first. The API structure is
+fully documented above — there is no need to "discover" it.
+
+The one script should:
+1. Download IC-IOT for all 50 countries (appending to CSV as it goes)
+2. Download employment for all 28 EU countries
+3. Run all verification checks
+4. Write the data_summary file
+
 Do not write inline bash one-liners with Python -c.
 
 Always use `requests` for HTTP calls. Add retry logic with exponential backoff.

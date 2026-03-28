@@ -93,7 +93,7 @@ After downloading, verify:
 Write the data_summary file with actual dimensions and totals.
 """
 
-    model = ChatAnthropic(model="claude-sonnet-4-6", max_tokens=8192)
+    model = ChatAnthropic(model="claude-sonnet-4-6", max_tokens=4096)
     tools = get_tools_for_stage("s1_acquisition", timeout=TIMEOUT_S)
 
     agent = create_react_agent(model=model, tools=tools, prompt=system_prompt)
@@ -102,7 +102,7 @@ Write the data_summary file with actual dimensions and totals.
     try:
         result = agent.invoke(
             {"messages": [{"role": "user", "content": task_message}]},
-            config={"recursion_limit": MAX_ITERATIONS * 20},
+            config={"recursion_limit": 30},  # max ~15 tool calls
         )
         elapsed = time.time() - t0
         log.info(f"Data acquisition agent completed in {elapsed:.1f}s")

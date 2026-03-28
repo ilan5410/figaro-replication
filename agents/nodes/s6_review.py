@@ -74,7 +74,7 @@ then report:
     # Initialize the model
     model = ChatAnthropic(
         model="claude-sonnet-4-6",
-        max_tokens=8192,
+        max_tokens=4096,
     )
 
     # Get tools for this stage (300s timeout — review doesn't do downloads)
@@ -99,7 +99,7 @@ then report:
         # Invoke the agent
         result = agent.invoke(
             {"messages": [{"role": "user", "content": task_message}]},
-            config={"recursion_limit": MAX_ITERATIONS * 15},  # approx tool calls per iteration
+            config={"recursion_limit": 20},  # max ~10 tool calls
         )
 
         elapsed = time.time() - t0

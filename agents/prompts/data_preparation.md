@@ -122,7 +122,21 @@ Before declaring done:
 
 ## Style
 
-Write multi-line Python logic as complete scripts, then execute them.
+**Write ONE comprehensive script that does all steps end-to-end, then execute it.**
+Do NOT write multiple small exploratory scripts. The IC-IOT structure
+(columns: c_orig, c_dest, prd_ava, prd_use, unit, time, OBS_VALUE) is known in
+advance — there is no need to probe the data first.
+
+The one script should:
+1. Load IC-IOT and employment files
+2. Build Z_EU, e_nonEU, x_EU, Em_EU in a single pass
+3. Write all output files
+4. Print verification stats (shapes, totals, ordering)
+
+If the script fails, read the error, fix it, and run a corrected script.
 Use pandas for data loading and reshaping.
 Use numpy only for numerical operations after pivoting.
-Print verification stats so you can inspect them.
+
+**Handling negatives in e_nonEU**: FIGARO data contains small negative values
+(CIF/FOB adjustments). Clip e_nonEU values to 0 with `np.clip(e_vals, 0, None)`
+and log the number clipped. Do not treat small negatives as an error.

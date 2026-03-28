@@ -110,7 +110,7 @@ After preparing, run verification checks and print:
 - First 3 row/column labels of Z_EU to confirm ordering
 """
 
-    model = ChatAnthropic(model="claude-sonnet-4-6", max_tokens=8192)
+    model = ChatAnthropic(model="claude-sonnet-4-6", max_tokens=4096)
     tools = get_tools_for_stage("s2_preparation", timeout=TIMEOUT_S)
 
     agent = create_react_agent(model=model, tools=tools, prompt=system_prompt)
@@ -121,7 +121,7 @@ After preparing, run verification checks and print:
     try:
         result = agent.invoke(
             {"messages": [{"role": "user", "content": task_message}]},
-            config={"recursion_limit": MAX_ITERATIONS * 20},
+            config={"recursion_limit": 25},  # max ~12 tool calls
         )
         elapsed = time.time() - t0
         log.info(f"Data preparation agent completed in {elapsed:.1f}s")
