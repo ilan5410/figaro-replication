@@ -1,0 +1,12 @@
+# Core data science
+numpy
+pandas
+matplotlib
+openpyxl
+pyyaml
+requests
+
+# Agentic pipeline
+langgraph
+langchain-anthropic
+langchain-core
