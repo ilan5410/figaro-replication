@@ -1,0 +1,56 @@
+reference_year: 2010
+
+iot_table_type: "product-by-product"
+iot_local_path: null
+
+eu_member_states:
+  - AT
+  - BE
+  - BG
+  - CY
+  - CZ
+  - DE
+  - DK
+  - EE
+  - EL
+  - ES
+  - FI
+  - FR
+  - HR
+  - HU
+  - IE
+  - IT
+  - LT
+  - LU
+  - LV
+  - MT
+  - NL
+  - PL
+  - PT
+  - RO
+  - SE
+  - SI
+  - SK
+  - UK
+
+non_eu_countries:
+  - US
+
+row_treatment: "import_vector"
+
+export_definition: "arto_2015"
+employment_measure: "persons_employed"
+n_industries: 64
+
+# 10-sector aggregation (1-based indices into the 64 CPA products)
+industry_aggregation_10:
+  A:   [1, 2, 3]
+  B-E: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+  F:   [27]
+  G-I: [28, 29, 30, 31, 32, 33, 34, 35, 36]
+  J:   [37, 38, 39, 40]
+  K:   [41, 42, 43]
+  L:   [44]
+  M-N: [45, 46, 47, 48, 49, 50, 51, 52, 53]
+  O-Q: [54, 55, 56, 57]
+  R-U: [58, 59, 60, 61, 62, 63, 64]

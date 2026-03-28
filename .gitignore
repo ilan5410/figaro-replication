@@ -1,0 +1,23 @@
+# Data (large files, re-downloadable)
+data/raw/
+data/prepared/
+data/model/
+data/decomposition/
+
+# Logs
+logs/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+.venv/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
