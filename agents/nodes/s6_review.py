@@ -71,10 +71,17 @@ then report:
   - A 2-3 sentence overall assessment
 """
 
+    # Clean up scripts from previous runs of this stage
+    scripts_dir = REPO_ROOT / "scripts"
+    scripts_dir.mkdir(exist_ok=True)
+    cleaned = [p.unlink() or p.name for p in scripts_dir.glob("tmp_s6_*")]
+    if cleaned:
+        log.info(f"Cleaned {len(cleaned)} old s6 scripts")
+
     # Initialize the model
     model = ChatAnthropic(
         model="claude-sonnet-4-6",
-        max_tokens=8192,
+        max_tokens=4096,
     )
 
     # Get tools for this stage (300s timeout — review doesn't do downloads)
@@ -99,7 +106,7 @@ then report:
         # Invoke the agent
         result = agent.invoke(
             {"messages": [{"role": "user", "content": task_message}]},
-            config={"recursion_limit": MAX_ITERATIONS * 15},  # approx tool calls per iteration
+            config={"recursion_limit": 20},  # max ~10 tool calls
         )
 
         elapsed = time.time() - t0

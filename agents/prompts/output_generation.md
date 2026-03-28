@@ -149,5 +149,17 @@ Save as: `outputs/tables/annex_c.csv` and `.xlsx`
 
 ## Style
 
-Write multi-line Python logic as complete scripts, then execute them.
-Use `matplotlib.use('Agg')` at the top of every matplotlib script (headless).
+**Write ONE comprehensive script that generates ALL outputs at once, then execute it.**
+Do NOT write one script per figure or table. All 7 outputs (3 figures + 4 tables) should
+be produced in a single script.
+
+Structure the script as:
+1. Load all input files at the top
+2. Create outputs/figures/ and outputs/tables/ directories
+3. Generate each output in sequence (table1, figure1, figure2, table3, table4, figure3, annex_c)
+4. At the end, verify each file exists and print a summary
+
+If the script fails, read the error, fix it in a single corrected script, and rerun.
+Do not split into multiple small scripts.
+
+Use `matplotlib.use('Agg')` at the very top (headless environments have no display).

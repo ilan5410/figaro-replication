@@ -250,7 +250,7 @@ def main():
 
     # Compile pipeline
     use_checkpointing = not args.no_checkpoint
-    graph = compile_pipeline(start_stage=start_stage, use_checkpointing=use_checkpointing)
+    graph = compile_pipeline(start_stage=start_stage, end_stage=end_stage, use_checkpointing=use_checkpointing)
 
     # Run pipeline
     t_start = time.time()

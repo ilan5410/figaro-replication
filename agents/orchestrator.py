@@ -154,7 +154,7 @@ def build_pipeline(start_stage: int = 1, end_stage: int = 6) -> StateGraph:
     return builder
 
 
-def build_pipeline_from_stage(start_stage: int) -> StateGraph:
+def build_pipeline_from_stage(start_stage: int, end_stage: int = 6) -> StateGraph:
     """
     Build a graph that starts from a specific stage (for --start-stage).
 
@@ -187,21 +187,37 @@ def build_pipeline_from_stage(start_stage: int) -> StateGraph:
     start_node = stage_to_node.get(start_stage, "s1_data_acquisition")
     builder.add_edge(START, start_node)
 
-    # Full edge set (same as build_pipeline)
-    if start_stage <= 1:
-        builder.add_edge("s1_data_acquisition", "gate_after_s1")
-        builder.add_conditional_edges("gate_after_s1", route_after_s1_gate)
-    if start_stage <= 2:
-        builder.add_edge("s2_data_preparation", "gate_after_s2")
-        builder.add_conditional_edges("gate_after_s2", route_after_s2_gate)
-    if start_stage <= 3:
-        builder.add_edge("s3_model_construction", "s4_decomposition")
-    if start_stage <= 4:
-        builder.add_edge("s4_decomposition", "gate_after_s3s4")
-        builder.add_conditional_edges("gate_after_s3s4", route_after_s3s4_gate)
-    if start_stage <= 5:
-        builder.add_edge("s5_output_generation", "s6_review")
-    if start_stage <= 6:
+    # Wire edges only for stages within [start_stage, end_stage]
+    # After the last included stage, route to END instead of the next stage.
+    if start_stage <= 1 <= end_stage:
+        if end_stage >= 2:
+            builder.add_edge("s1_data_acquisition", "gate_after_s1")
+            builder.add_conditional_edges("gate_after_s1", route_after_s1_gate)
+        else:
+            builder.add_edge("s1_data_acquisition", END)
+    if start_stage <= 2 <= end_stage:
+        if end_stage >= 3:
+            builder.add_edge("s2_data_preparation", "gate_after_s2")
+            builder.add_conditional_edges("gate_after_s2", route_after_s2_gate)
+        else:
+            builder.add_edge("s2_data_preparation", END)
+    if start_stage <= 3 <= end_stage:
+        if end_stage >= 4:
+            builder.add_edge("s3_model_construction", "s4_decomposition")
+        else:
+            builder.add_edge("s3_model_construction", END)
+    if start_stage <= 4 <= end_stage:
+        if end_stage >= 5:
+            builder.add_edge("s4_decomposition", "gate_after_s3s4")
+            builder.add_conditional_edges("gate_after_s3s4", route_after_s3s4_gate)
+        else:
+            builder.add_edge("s4_decomposition", END)
+    if start_stage <= 5 <= end_stage:
+        if end_stage >= 6:
+            builder.add_edge("s5_output_generation", "s6_review")
+        else:
+            builder.add_edge("s5_output_generation", END)
+    if start_stage <= 6 <= end_stage:
         builder.add_conditional_edges("s6_review", route_after_s6)
 
     builder.add_edge("human_escalation", END)
@@ -209,14 +225,14 @@ def build_pipeline_from_stage(start_stage: int) -> StateGraph:
     return builder
 
 
-def compile_pipeline(start_stage: int = 1, use_checkpointing: bool = True):
+def compile_pipeline(start_stage: int = 1, end_stage: int = 6, use_checkpointing: bool = True):
     """
     Compile the pipeline graph, optionally with SQLite checkpointing.
 
     SQLite checkpointing enables resuming from a specific stage without
     re-running earlier stages (critical for S1's 30-min downloads).
     """
-    builder = build_pipeline_from_stage(start_stage)
+    builder = build_pipeline_from_stage(start_stage, end_stage)
 
     if use_checkpointing:
         try:

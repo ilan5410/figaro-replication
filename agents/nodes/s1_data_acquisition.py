@@ -58,6 +58,13 @@ def run_s1_data_acquisition(state: PipelineState) -> PipelineState:
             "stage_metrics": stage_metrics,
         }
 
+    # Clean up scripts from previous runs of this stage
+    scripts_dir = REPO_ROOT / "scripts"
+    scripts_dir.mkdir(exist_ok=True)
+    cleaned = [p.unlink() or p.name for p in scripts_dir.glob("tmp_s1_*")]
+    if cleaned:
+        log.info(f"Cleaned {len(cleaned)} old s1 scripts")
+
     system_prompt = (PROMPTS_DIR / "data_acquisition.md").read_text(encoding="utf-8")
 
     task_message = f"""
@@ -93,7 +100,7 @@ After downloading, verify:
 Write the data_summary file with actual dimensions and totals.
 """
 
-    model = ChatAnthropic(model="claude-sonnet-4-6", max_tokens=8192)
+    model = ChatAnthropic(model="claude-sonnet-4-6", max_tokens=4096)
     tools = get_tools_for_stage("s1_acquisition", timeout=TIMEOUT_S)
 
     agent = create_react_agent(model=model, tools=tools, prompt=system_prompt)
@@ -102,7 +109,7 @@ Write the data_summary file with actual dimensions and totals.
     try:
         result = agent.invoke(
             {"messages": [{"role": "user", "content": task_message}]},
-            config={"recursion_limit": MAX_ITERATIONS * 20},
+            config={"recursion_limit": 30},  # max ~15 tool calls
         )
         elapsed = time.time() - t0
         log.info(f"Data acquisition agent completed in {elapsed:.1f}s")

@@ -4,6 +4,9 @@ data/prepared/
 data/model/
 data/decomposition/
 
+# Agent-generated scripts (ephemeral, recreated each run)
+scripts/
+
 # Logs
 logs/
 

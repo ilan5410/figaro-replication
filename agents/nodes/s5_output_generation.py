@@ -32,6 +32,13 @@ def run_s5_output_generation(state: PipelineState) -> PipelineState:
     errors = list(state.get("errors", []))
     stage_metrics = dict(state.get("stage_metrics") or {})
 
+    # Clean up scripts from previous runs of this stage
+    scripts_dir = REPO_ROOT / "scripts"
+    scripts_dir.mkdir(exist_ok=True)
+    cleaned = [p.unlink() or p.name for p in scripts_dir.glob("tmp_s5_*")]
+    if cleaned:
+        log.info(f"Cleaned {len(cleaned)} old s5 scripts")
+
     system_prompt = (PROMPTS_DIR / "output_generation.md").read_text(encoding="utf-8")
 
     task_message = f"""
@@ -56,7 +63,7 @@ After producing all outputs, verify each file exists and write a summary to
 outputs/output_warnings.txt listing what was produced and any issues.
 """
 
-    model = ChatAnthropic(model="claude-sonnet-4-6", max_tokens=8192)
+    model = ChatAnthropic(model="claude-sonnet-4-6", max_tokens=4096)
     tools = get_tools_for_stage("s5_output", timeout=TIMEOUT_S)
 
     agent = create_react_agent(model=model, tools=tools, prompt=system_prompt)
@@ -65,7 +72,7 @@ outputs/output_warnings.txt listing what was produced and any issues.
     try:
         result = agent.invoke(
             {"messages": [{"role": "user", "content": task_message}]},
-            config={"recursion_limit": MAX_ITERATIONS * 15},
+            config={"recursion_limit": 15},  # 1 script + fix = ~6 tool calls
         )
         elapsed = time.time() - t0
         log.info(f"Output generation agent completed in {elapsed:.1f}s")
