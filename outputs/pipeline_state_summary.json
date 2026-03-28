@@ -1,0 +1,41 @@
+{
+  "stage": 4,
+  "raw_data_paths": {
+    "iciot": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/raw/figaro_iciot_2010.csv",
+    "employment": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/raw/employment_2010.csv",
+    "summary": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/raw/data_summary_2010.txt"
+  },
+  "data_summary": null,
+  "data_valid": true,
+  "prepared_paths": {
+    "Z_EU": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/prepared/Z_EU.csv",
+    "e_nonEU": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/prepared/e_nonEU.csv",
+    "x_EU": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/prepared/x_EU.csv",
+    "Em_EU": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/prepared/Em_EU.csv",
+    "metadata": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/prepared/metadata.json"
+  },
+  "preparation_valid": true,
+  "model_paths": {
+    "A_EU": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/model/A_EU.csv",
+    "L_EU": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/model/L_EU.csv",
+    "d_EU": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/model/d_EU.csv",
+    "em_exports_total": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/model/em_exports_total.csv",
+    "em_exports_country_matrix": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/model/em_exports_country_matrix.csv"
+  },
+  "decomposition_paths": {
+    "country_decomposition": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/decomposition/country_decomposition.csv",
+    "annex_c_matrix": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/decomposition/annex_c_matrix.csv",
+    "industry_table4": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/decomposition/industry_table4.csv",
+    "industry_figure3": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/decomposition/industry_figure3.csv"
+  },
+  "output_paths": null,
+  "review_report_path": null,
+  "review_passed": null,
+  "errors": [],
+  "human_intervention_needed": false,
+  "stage_metrics": {
+    "s4": {
+      "elapsed_s": 1.5626239776611328
+    }
+  }
+}
