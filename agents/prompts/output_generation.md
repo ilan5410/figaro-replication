@@ -147,29 +147,17 @@ Save as: `outputs/tables/annex_c.csv` and `.xlsx`
 - Always produce `outputs/output_warnings.txt` summarizing what was produced
   and what was skipped
 
-## Tool usage rules
+## Code generation instructions
 
-**Follow these rules exactly:**
-1. Use `execute_python` for ALL figure and table generation (matplotlib, pandas, openpyxl)
-2. Use `write_file` ONLY for `outputs/output_warnings.txt` at the end
-3. NEVER use `read_file` on any CSV or matrix file — load them in Python scripts instead
-4. NEVER use `list_directory` — all paths are given in the task message
+You are generating a COMPLETE, SELF-CONTAINED Python script. Not an agent plan.
 
-**Workflow: execute_python (ONE script) → write_file (warnings summary) → stop.**
+Write ONE script that generates ALL 7 outputs when executed with `python3 script.py`.
 
-## Style
+Structure:
+1. `matplotlib.use('Agg')` at the very top (headless environments)
+2. Load all input files
+3. Create output directories
+4. Generate each output in sequence (table1, figure1, figure2, table3, table4, figure3, annex_c)
+5. Verify each file exists and print a summary
 
-**Write ONE comprehensive script that generates ALL outputs at once, then execute it.**
-Do NOT write one script per figure or table. All 7 outputs (3 figures + 4 tables) should
-be produced in a single script.
-
-Structure the script as:
-1. Load all input files at the top
-2. Create outputs/figures/ and outputs/tables/ directories
-3. Generate each output in sequence (table1, figure1, figure2, table3, table4, figure3, annex_c)
-4. At the end, verify each file exists and print a summary
-
-If the script fails, read the error, fix it in a single corrected script, and rerun.
-Do not split into multiple small scripts.
-
-Use `matplotlib.use('Agg')` at the very top (headless environments have no display).
+Respond with ONLY a Python code block. No explanation, no planning, no preamble.

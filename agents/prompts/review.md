@@ -109,26 +109,19 @@ Produce `outputs/review_report.md` with this structure:
 
 Use ✅ for PASS, ⚠️ for WARN, ❌ for FAIL.
 
-## Quality checks before declaring success
+## Code generation instructions
 
-Before finishing:
-1. Read back the review_report.md you wrote and confirm it contains all sections
-2. Count PASS/WARN/FAIL — if any FAIL, set `review_passed = False` in your output
-3. The report must include the Country Summary table and Known Limitations
+You are generating a COMPLETE, SELF-CONTAINED Python script. Not an agent plan.
 
-## Failure protocol
+The script must:
+1. Load all data files and run every check (7.1-7.5)
+2. Print structured PASS/WARN/FAIL output to stdout
+3. Write the full review report to `outputs/review_report.md` using Python open()/write()
+4. Include the Country Summary table and Known Limitations section
+5. If a computation raises an exception, catch it, report FAIL, continue with remaining checks
+6. If any FAIL checks exist, overall assessment is "REPLICATION WITH ISSUES"
 
-- If you cannot load a required file, note the missing file in the report and
-  set that check to FAIL
-- If a computation raises an exception, catch it, report the error, continue
-  with remaining checks
-- If any FAIL checks exist, the overall assessment is "REPLICATION WITH ISSUES"
-- Do not stop early — always produce a complete report
-
-## Style
-
-Write multi-line Python logic as complete scripts using execute_python.
-Do not write inline bash commands or multi-line logic directly in the shell.
+Respond with ONLY a Python code block. No explanation, no planning, no preamble.
 
 Known context: This pipeline uses product-by-product IC-IOT tables (publicly
 available). The paper uses industry-by-industry tables (not public). All
