@@ -72,7 +72,7 @@ outputs/output_warnings.txt listing what was produced and any issues.
     try:
         result = agent.invoke(
             {"messages": [{"role": "user", "content": task_message}]},
-            config={"recursion_limit": 25},  # max ~12 tool calls
+            config={"recursion_limit": 15},  # 1 script + fix = ~6 tool calls
         )
         elapsed = time.time() - t0
         log.info(f"Output generation agent completed in {elapsed:.1f}s")
