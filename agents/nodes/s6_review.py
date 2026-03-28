@@ -51,17 +51,17 @@ def run_s6_review(state: PipelineState) -> PipelineState:
     task_message = f"""
 Review the FIGARO employment content replication outputs for year {year}.
 
-**TOOL USAGE RULES — follow exactly:**
-1. Use `execute_python` for ALL numerical work (loading CSVs, computing checks, printing results)
-2. Use `write_file` ONLY to save outputs/review_report.md
-3. NEVER use `read_file` on any CSV or matrix file — those are too large for context; load them in Python scripts instead
-4. NEVER use `list_directory` — all paths are given below
+**TOOL USAGE RULE: use `execute_python` only. Do NOT call `write_file`, `read_file`, or `list_directory`.**
 
-**Workflow (3 steps only):**
-Step 1 — execute_python: Write and run ONE script that loads all data files, runs every
-         check in sections 7.1–7.5 of your system prompt, and prints structured PASS/WARN/FAIL output.
-Step 2 — write_file: Save outputs/review_report.md using the printed check results.
-Step 3 — Stop. Do not run more scripts or re-read anything.
+**Workflow (2 steps only):**
+Step 1 — execute_python: Write and run ONE script that:
+  (a) loads all data files with pandas
+  (b) runs every check in sections 7.1–7.5 of your system prompt
+  (c) prints structured PASS/WARN/FAIL output to stdout
+  (d) writes the full review report directly to outputs/review_report.md from within the script
+Step 2 — Stop. The script handles everything including saving the report. No write_file call needed.
+
+The script must write outputs/review_report.md itself (using Python's open/write, not the write_file tool).
 
 Input files (all exist, load with pandas in Python):
   - data/prepared/Z_EU.csv              — {n_total}×{n_total} matrix (index_col=0)
@@ -78,8 +78,8 @@ Input files (all exist, load with pandas in Python):
       total_in_country_THS, total_by_country_THS, domestic_effect_THS,
       spillover_received_THS, spillover_generated_THS, spillover_share_pct
 
-Note: Z_EU and L_EU are large ({n_total}×{n_total}). Load them with pd.read_csv(..., index_col=0)
-and convert to numpy with .values for matrix operations. Avoid printing them.
+Note: Z_EU and L_EU are large ({n_total}×{n_total}). Convert to numpy with .values for matrix
+operations. Do not print matrices. Print only check results and summary statistics.
 """
 
     # Clean up scripts from previous runs of this stage
@@ -117,7 +117,7 @@ and convert to numpy with .values for matrix operations. Avoid printing them.
         # Invoke the agent
         result = agent.invoke(
             {"messages": [{"role": "user", "content": task_message}]},
-            config={"recursion_limit": 20},  # execute_python(1) + write_file(1) + fix pass(4) = ~10 steps
+            config={"recursion_limit": 10},  # write script(1) + execute(1) + fix if needed(2) = ~6 steps
         )
 
         elapsed = time.time() - t0
