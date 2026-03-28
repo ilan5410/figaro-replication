@@ -35,7 +35,7 @@
   "human_intervention_needed": false,
   "stage_metrics": {
     "s6": {
-      "elapsed_s": 238.2892291545868,
+      "elapsed_s": 332.64302802085876,
       "retries": 0,
       "report_exists": true
     }

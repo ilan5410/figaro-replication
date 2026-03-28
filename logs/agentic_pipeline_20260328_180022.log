@@ -1,0 +1,42 @@
+2026-03-28 18:00:22,583 [INFO] figaro.run_agentic — Log file: /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/logs/agentic_pipeline_20260328_180022.log
+2026-03-28 18:00:22,583 [INFO] figaro.run_agentic — === FIGARO Agentic Pipeline ===
+2026-03-28 18:00:22,583 [INFO] figaro.run_agentic — Config: config.yaml
+2026-03-28 18:00:22,583 [INFO] figaro.run_agentic — Reference year: 2010
+2026-03-28 18:00:22,583 [INFO] figaro.run_agentic — Table type: product-by-product
+2026-03-28 18:00:22,583 [INFO] figaro.run_agentic — Running single stage: 5
+2026-03-28 18:00:22,584 [WARNING] figaro.orchestrator — langgraph.checkpoint.sqlite not available — running without checkpointing
+2026-03-28 18:00:22,605 [INFO] figaro.orchestrator — Compiled pipeline without checkpointing
+2026-03-28 18:00:22,605 [INFO] figaro.run_agentic — Starting pipeline execution...
+2026-03-28 18:00:22,607 [INFO] figaro.s5_output — === Stage 5: Output Generation (Deterministic) ===
+2026-03-28 18:00:22,846 [INFO] stage5 — === Stage 5: Output Generation ===
+2026-03-28 18:00:22,847 [INFO] stage5 — Loading inputs...
+2026-03-28 18:00:22,854 [INFO] stage5 —   country_decomp: (28, 12), annex_c: (28, 28)
+2026-03-28 18:00:22,855 [INFO] stage5 —   table4_src: (10, 10), fig3_src: (10, 4)
+2026-03-28 18:00:22,855 [INFO] stage5 — Producing Table 1...
+2026-03-28 18:00:23,034 [INFO] stage5 —   Saved table1_employment_exports.csv + .xlsx (28 rows)
+2026-03-28 18:00:23,034 [INFO] stage5 — Producing Figure 1...
+2026-03-28 18:00:23,406 [INFO] stage5 —   Saved figure1.png + .pdf
+2026-03-28 18:00:23,406 [INFO] stage5 — Producing Figure 2...
+2026-03-28 18:00:23,672 [INFO] stage5 —   Saved figure2.png + .pdf
+2026-03-28 18:00:23,672 [INFO] stage5 — Producing Table 3...
+2026-03-28 18:00:23,678 [INFO] stage5 —   Saved table3_spillover.csv + .xlsx (28 rows)
+2026-03-28 18:00:23,678 [INFO] stage5 — Producing Table 4...
+2026-03-28 18:00:23,683 [INFO] stage5 —   Saved table4_industry.csv + .xlsx (11 rows)
+2026-03-28 18:00:23,683 [INFO] stage5 — Producing Figure 3...
+2026-03-28 18:00:23,869 [INFO] stage5 —   Saved figure3.png + .pdf
+2026-03-28 18:00:23,869 [INFO] stage5 — Producing Annex C...
+2026-03-28 18:00:23,880 [INFO] stage5 —   Saved annex_c.csv + .xlsx (28 rows)
+2026-03-28 18:00:23,880 [INFO] stage5 — === Stage 5 complete ===
+2026-03-28 18:00:23,881 [INFO] figaro.s5_output — Output generation completed in 1.3s
+2026-03-28 18:00:23,881 [INFO] figaro.s5_output — Produced 3 figures, 4 tables
+2026-03-28 18:00:23,881 [INFO] figaro.run_agentic — 
+Pipeline completed in 1.3s
+2026-03-28 18:00:23,881 [WARNING] figaro.run_agentic — Review stage did not produce a report
+2026-03-28 18:00:23,881 [INFO] figaro.run_agentic — 
+============================================================
+2026-03-28 18:00:23,881 [INFO] figaro.run_agentic — PIPELINE METRICS SUMMARY
+2026-03-28 18:00:23,881 [INFO] figaro.run_agentic — ============================================================
+2026-03-28 18:00:23,881 [INFO] figaro.run_agentic —   s5: 1.3s  figures=3, tables=4
+2026-03-28 18:00:23,882 [INFO] figaro.run_agentic — Pipeline state saved to /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/outputs/pipeline_state_summary.json
+2026-03-28 18:00:23,882 [INFO] figaro.run_agentic — === Pipeline complete ===
+2026-03-28 18:00:23,882 [INFO] figaro.run_agentic — Outputs: outputs/tables/, outputs/figures/, outputs/review_report.md

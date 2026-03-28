@@ -1,0 +1,2 @@
+Stage 5 complete: 3 figures + 4 tables produced deterministically.
+Table type: product-by-product (public IC-IOT). Paper uses industry-by-industry (proprietary). Results may differ slightly.

@@ -1,0 +1,31 @@
+2026-03-28 14:36:33,951 [INFO] figaro.run_agentic — Log file: /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/logs/agentic_pipeline_20260328_143633.log
+2026-03-28 14:36:33,951 [INFO] figaro.run_agentic — === FIGARO Agentic Pipeline ===
+2026-03-28 14:36:33,951 [INFO] figaro.run_agentic — Config: config.yaml
+2026-03-28 14:36:33,951 [INFO] figaro.run_agentic — Reference year: 2010
+2026-03-28 14:36:33,952 [INFO] figaro.run_agentic — Table type: product-by-product
+2026-03-28 14:36:33,952 [INFO] figaro.run_agentic — Running single stage: 5
+2026-03-28 14:36:33,953 [WARNING] figaro.orchestrator — langgraph.checkpoint.sqlite not available — running without checkpointing
+2026-03-28 14:36:33,973 [INFO] figaro.orchestrator — Compiled pipeline without checkpointing
+2026-03-28 14:36:33,973 [INFO] figaro.run_agentic — Starting pipeline execution...
+2026-03-28 14:36:33,974 [INFO] figaro.s5_output — === Stage 5: Output Generation Agent (Agentic) ===
+2026-03-28 14:36:33,975 [INFO] figaro.s5_output — Cleaned 1 old s5 scripts
+2026-03-28 14:37:17,690 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:37:27,025 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:37:27,032 [INFO] figaro.tools — [s5_output] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s5_output_20260328_143727_f.py
+2026-03-28 14:37:27,744 [INFO] figaro.tools — [s5_output] Script succeeded
+2026-03-28 14:38:11,634 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:38:54,156 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:39:40,099 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:39:40,124 [INFO] figaro.s5_output — Output generation agent completed in 186.1s
+2026-03-28 14:39:40,126 [INFO] figaro.s5_output — Produced 2 figures, 1 tables
+2026-03-28 14:39:40,126 [INFO] figaro.run_agentic — 
+Pipeline completed in 186.2s
+2026-03-28 14:39:40,126 [WARNING] figaro.run_agentic — Review stage did not produce a report
+2026-03-28 14:39:40,126 [INFO] figaro.run_agentic — 
+============================================================
+2026-03-28 14:39:40,126 [INFO] figaro.run_agentic — PIPELINE METRICS SUMMARY
+2026-03-28 14:39:40,126 [INFO] figaro.run_agentic — ============================================================
+2026-03-28 14:39:40,126 [INFO] figaro.run_agentic —   s5: 186.1s  figures=2, tables=1
+2026-03-28 14:39:40,127 [INFO] figaro.run_agentic — Pipeline state saved to /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/outputs/pipeline_state_summary.json
+2026-03-28 14:39:40,127 [INFO] figaro.run_agentic — === Pipeline complete ===
+2026-03-28 14:39:40,127 [INFO] figaro.run_agentic — Outputs: outputs/tables/, outputs/figures/, outputs/review_report.md

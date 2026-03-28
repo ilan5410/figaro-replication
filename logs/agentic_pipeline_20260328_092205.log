@@ -1,0 +1,282 @@
+2026-03-28 09:22:05,997 [INFO] figaro.run_agentic — Log file: /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/logs/agentic_pipeline_20260328_092205.log
+2026-03-28 09:22:05,997 [INFO] figaro.run_agentic — === FIGARO Agentic Pipeline ===
+2026-03-28 09:22:05,998 [INFO] figaro.run_agentic — Config: config.yaml
+2026-03-28 09:22:05,998 [INFO] figaro.run_agentic — Reference year: 2010
+2026-03-28 09:22:05,998 [INFO] figaro.run_agentic — Table type: product-by-product
+2026-03-28 09:22:05,998 [INFO] figaro.run_agentic — Running single stage: 1
+2026-03-28 09:22:05,999 [WARNING] figaro.orchestrator — langgraph.checkpoint.sqlite not available — running without checkpointing
+2026-03-28 09:22:06,024 [INFO] figaro.orchestrator — Compiled pipeline without checkpointing
+2026-03-28 09:22:06,024 [INFO] figaro.run_agentic — Starting pipeline execution...
+2026-03-28 09:22:06,027 [INFO] figaro.s1_acquisition — === Stage 1: Data Acquisition Agent (Agentic) ===
+2026-03-28 09:22:10,010 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:22:10,048 [INFO] figaro.tools — [s1_acquisition] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s1_acquisition_20260328_092210_f.py
+2026-03-28 09:22:10,467 [INFO] figaro.tools — [s1_acquisition] Script succeeded
+2026-03-28 09:22:28,322 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:22:28,420 [INFO] figaro.tools — [s1_acquisition] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s1_acquisition_20260328_092228_f.py
+2026-03-28 09:22:28,850 [INFO] figaro.tools — [s1_acquisition] Script succeeded
+2026-03-28 09:22:44,785 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:22:44,791 [INFO] figaro.tools — [s1_acquisition] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s1_acquisition_20260328_092244_f.py
+2026-03-28 09:23:00,931 [INFO] figaro.tools — [s1_acquisition] Script succeeded
+2026-03-28 09:23:08,649 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:23:08,657 [INFO] figaro.tools — [s1_acquisition] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s1_acquisition_20260328_092308_f.py
+2026-03-28 09:23:08,743 [WARNING] figaro.tools — [s1_acquisition] Script failed (rc=1)
+2026-03-28 09:23:08,744 [WARNING] figaro.tools —   stderr: Traceback (most recent call last):
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s1_acquisition_20260328_092308_f.py", line 3, in <module>
+    emp_df.to_csv("data/raw/employment_2010.csv", index=False)
+    ^^^^^^
+NameError: name 'emp_df' is not defined
+
+2026-03-28 09:23:30,502 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:23:30,520 [INFO] figaro.tools — [s1_acquisition] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s1_acquisition_20260328_092330_f.py
+2026-03-28 09:23:44,343 [INFO] figaro.tools — [s1_acquisition] Script succeeded
+2026-03-28 09:23:55,448 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:23:55,454 [INFO] figaro.tools — [s1_acquisition] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s1_acquisition_20260328_092355_f.py
+2026-03-28 09:23:56,578 [INFO] figaro.tools — [s1_acquisition] Script succeeded
+2026-03-28 09:24:02,573 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:24:02,594 [INFO] figaro.tools — [s1_acquisition] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s1_acquisition_20260328_092402_f.py
+2026-03-28 09:24:03,637 [INFO] figaro.tools — [s1_acquisition] Script succeeded
+2026-03-28 09:24:25,549 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:24:25,564 [INFO] figaro.tools — [s1_acquisition] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s1_acquisition_20260328_092425_f.py
+2026-03-28 09:25:41,914 [INFO] figaro.tools — [s1_acquisition] Script succeeded
+2026-03-28 09:25:57,470 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:25:57,482 [INFO] figaro.tools — [s1_acquisition] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s1_acquisition_20260328_092557_f.py
+2026-03-28 09:26:15,652 [INFO] figaro.tools — [s1_acquisition] Script succeeded
+2026-03-28 09:26:49,810 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:26:49,819 [INFO] figaro.tools — [s1_acquisition] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s1_acquisition_20260328_092649_f.py
+2026-03-28 09:27:07,032 [INFO] figaro.tools — [s1_acquisition] Script succeeded
+2026-03-28 09:27:10,777 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:27:22,866 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:27:22,871 [INFO] figaro.s1_acquisition — Data acquisition agent completed in 316.8s
+2026-03-28 09:27:25,420 [INFO] figaro.validators — IC-IOT: 11040000 rows, 50 unique c_orig countries
+2026-03-28 09:27:25,427 [INFO] figaro.validators — Employment: 1837 rows, 30 geo codes
+2026-03-28 09:27:25,451 [INFO] figaro.orchestrator — S1 validation: PASS — []
+2026-03-28 09:27:25,453 [INFO] figaro.s2_preparation — === Stage 2: Data Preparation Agent (Agentic) ===
+2026-03-28 09:27:25,620 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:27:25,620 [INFO] anthropic._base_client — Retrying request to /v1/messages in 15.000000 seconds
+2026-03-28 09:27:43,508 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:27:43,514 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_092743_f.py
+2026-03-28 09:27:43,907 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:27:44,073 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:27:44,074 [INFO] anthropic._base_client — Retrying request to /v1/messages in 5.000000 seconds
+2026-03-28 09:27:55,428 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:27:55,435 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_092755_f.py
+2026-03-28 09:28:01,570 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:28:04,399 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:28:04,407 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_092804_f.py
+2026-03-28 09:28:04,777 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:28:04,926 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:28:04,926 [INFO] anthropic._base_client — Retrying request to /v1/messages in 7.000000 seconds
+2026-03-28 09:28:17,792 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:28:17,799 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_092817_f.py
+2026-03-28 09:28:18,181 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:28:18,346 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:28:18,347 [INFO] anthropic._base_client — Retrying request to /v1/messages in 9.000000 seconds
+2026-03-28 09:28:36,594 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:28:36,612 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_092836_f.py
+2026-03-28 09:28:38,944 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:28:39,119 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:28:39,120 [INFO] anthropic._base_client — Retrying request to /v1/messages in 6.000000 seconds
+2026-03-28 09:29:01,765 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:29:01,802 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_092901_f.py
+2026-03-28 09:29:11,022 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:29:25,384 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:29:25,400 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_092925_f.py
+2026-03-28 09:29:33,419 [WARNING] figaro.tools — [s2_preparation] Script failed (rc=1)
+2026-03-28 09:29:33,419 [WARNING] figaro.tools —   stderr: Traceback (most recent call last):
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_092925_f.py", line 51, in <module>
+    assert (e_nonEU >= 0).all(), "Negative export values found!"
+           ~~~~~~~~~~~~~~~~~~^^
+AssertionError: Negative export values found!
+
+2026-03-28 09:29:40,498 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:29:40,509 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_092940_f.py
+2026-03-28 09:29:47,316 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:29:47,507 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:29:47,508 [INFO] anthropic._base_client — Retrying request to /v1/messages in 21.000000 seconds
+2026-03-28 09:30:23,269 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:30:23,296 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_093023_f.py
+2026-03-28 09:30:30,003 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:30:30,187 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:30:30,188 [INFO] anthropic._base_client — Retrying request to /v1/messages in 12.000000 seconds
+2026-03-28 09:31:01,641 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:31:01,658 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_093101_f.py
+2026-03-28 09:31:15,208 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:31:39,909 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:31:39,917 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_093139_f.py
+2026-03-28 09:31:45,893 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:31:46,094 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:31:46,095 [INFO] anthropic._base_client — Retrying request to /v1/messages in 12.000000 seconds
+2026-03-28 09:32:02,307 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:32:02,315 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_093202_f.py
+2026-03-28 09:32:02,731 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:32:02,917 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:32:02,918 [INFO] anthropic._base_client — Retrying request to /v1/messages in 42.000000 seconds
+2026-03-28 09:33:17,882 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:33:17,899 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_093317_f.py
+2026-03-28 09:33:30,853 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:33:46,143 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:33:46,151 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_093346_f.py
+2026-03-28 09:33:48,297 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:33:48,465 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:33:48,466 [INFO] anthropic._base_client — Retrying request to /v1/messages in 39.000000 seconds
+2026-03-28 09:34:32,592 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:34:32,600 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_093432_f.py
+2026-03-28 09:34:32,655 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:34:32,834 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:34:32,835 [INFO] anthropic._base_client — Retrying request to /v1/messages in 54.000000 seconds
+2026-03-28 09:36:00,454 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:36:00,460 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_093600_f.py
+2026-03-28 09:36:14,336 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:36:40,756 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:36:40,764 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_093640_f.py
+2026-03-28 09:36:42,911 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:36:43,087 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:36:43,089 [INFO] anthropic._base_client — Retrying request to /v1/messages in 49.000000 seconds
+2026-03-28 09:37:54,609 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:37:54,619 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_093754_f.py
+2026-03-28 09:37:55,109 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:37:55,292 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:37:55,293 [INFO] anthropic._base_client — Retrying request to /v1/messages in 50.000000 seconds
+2026-03-28 09:39:30,752 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:39:30,769 [INFO] figaro.tools — Wrote 6045 bytes to /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/prepared/preparation_summary.txt
+2026-03-28 09:39:31,317 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:39:31,318 [INFO] anthropic._base_client — Retrying request to /v1/messages in 31.000000 seconds
+2026-03-28 09:40:05,601 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 09:40:05,609 [INFO] figaro.tools — [s2_preparation] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s2_preparation_20260328_094005_f.py
+2026-03-28 09:40:05,674 [INFO] figaro.tools — [s2_preparation] Script succeeded
+2026-03-28 09:40:05,848 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:40:05,849 [INFO] anthropic._base_client — Retrying request to /v1/messages in 0.482179 seconds
+2026-03-28 09:40:06,701 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:40:06,701 [INFO] anthropic._base_client — Retrying request to /v1/messages in 0.957826 seconds
+2026-03-28 09:40:07,815 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 429 Too Many Requests"
+2026-03-28 09:40:07,822 [ERROR] figaro.s2_preparation — Data preparation agent failed: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': "This request would exceed your organization's rate limit of 30,000 input tokens per minute (org: 5cdeb590-ee59-47fb-8e12-457106c46e6a, model: claude-sonnet-4-6). For details, refer to: https://docs.claude.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://claude.com/contact-sales to discuss your options for a rate limit increase."}, 'request_id': 'req_011CZVBHMHuhinhEtHt61Kkz'}
+Traceback (most recent call last):
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/agents/nodes/s2_data_preparation.py", line 122, in run_s2_data_preparation
+    result = agent.invoke(
+        {"messages": [{"role": "user", "content": task_message}]},
+        config={"recursion_limit": MAX_ITERATIONS * 20},
+    )
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langgraph/pregel/main.py", line 3292, in invoke
+    for chunk in self.stream(
+                 ~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<10 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ):
+    ^
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langgraph/pregel/main.py", line 2725, in stream
+    for _ in runner.tick(
+             ~~~~~~~~~~~^
+        [t for t in loop.tasks.values() if not t.writes],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        schedule_task=loop.accept_push,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langgraph/pregel/_runner.py", line 167, in tick
+    run_with_retry(
+    ~~~~~~~~~~~~~~^
+        t,
+        ^^
+    ...<10 lines>...
+        },
+        ^^
+    )
+    ^
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langgraph/pregel/_retry.py", line 96, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langgraph/_internal/_runnable.py", line 656, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langgraph/_internal/_runnable.py", line 393, in invoke
+    ret = context.run(self.func, *args, **kwargs)
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langgraph/prebuilt/chat_agent_executor.py", line 679, in call_model
+    response = cast(AIMessage, static_model.invoke(model_input, config))  # type: ignore[union-attr]
+                               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langchain_core/runnables/base.py", line 3157, in invoke
+    input_ = context.run(step.invoke, input_, config)
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langchain_core/runnables/base.py", line 5695, in invoke
+    return self.bound.invoke(
+           ~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+        self._merge_configs(config),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **{**self.kwargs, **kwargs},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langchain_core/language_models/chat_models.py", line 454, in invoke
+    self.generate_prompt(
+    ~~~~~~~~~~~~~~~~~~~~^
+        [self._convert_input(input)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ).generations[0][0],
+    ^
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langchain_core/language_models/chat_models.py", line 1185, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langchain_core/language_models/chat_models.py", line 995, in generate
+    self._generate_with_cache(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        m,
+        ^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langchain_core/language_models/chat_models.py", line 1297, in _generate_with_cache
+    result = self._generate(
+        messages, stop=stop, run_manager=run_manager, **kwargs
+    )
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langchain_anthropic/chat_models.py", line 1518, in _generate
+    data = self._create(payload)
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langchain_anthropic/chat_models.py", line 1190, in _create
+    return self._client.messages.create(**payload)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/anthropic/_utils/_utils.py", line 282, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/anthropic/resources/messages/messages.py", line 996, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/v1/messages",
+        ^^^^^^^^^^^^^^^
+    ...<30 lines>...
+        stream_cls=Stream[RawMessageStreamEvent],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/anthropic/_base_client.py", line 1364, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/anthropic/_base_client.py", line 1137, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.RateLimitError: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': "This request would exceed your organization's rate limit of 30,000 input tokens per minute (org: 5cdeb590-ee59-47fb-8e12-457106c46e6a, model: claude-sonnet-4-6). For details, refer to: https://docs.claude.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://claude.com/contact-sales to discuss your options for a rate limit increase."}, 'request_id': 'req_011CZVBHMHuhinhEtHt61Kkz'}
+During task with name 'agent' and id 'a957c2fd-d657-58fe-addf-2f6ec38935ca'
+2026-03-28 09:40:07,855 [INFO] figaro.validators — Metadata: 28 countries × 64 products = 1792
+2026-03-28 09:40:08,046 [INFO] figaro.validators — Z_EU: (1792, 1792), negatives: 0, sum: 10811191.4
+2026-03-28 09:40:08,052 [INFO] figaro.validators — e_nonEU: 1792 rows, sum: 1870682.9
+2026-03-28 09:40:08,053 [INFO] figaro.validators — Em_EU: total=220212, deviation from 225677: 2.4%
+2026-03-28 09:40:08,055 [INFO] figaro.orchestrator — S2 validation: FAIL — ['e_nonEU has 233 negative values']
+2026-03-28 09:40:08,055 [ERROR] figaro.orchestrator — === PIPELINE HALTED — Human Intervention Required ===
+2026-03-28 09:40:08,055 [ERROR] figaro.orchestrator —   Stage 2 exception: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': "This request would exceed your organization's rate limit of 30,000 input tokens per minute (org: 5cdeb590-ee59-47fb-8e12-457106c46e6a, model: claude-sonnet-4-6). For details, refer to: https://docs.claude.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://claude.com/contact-sales to discuss your options for a rate limit increase."}, 'request_id': 'req_011CZVBHMHuhinhEtHt61Kkz'}
+2026-03-28 09:40:08,055 [ERROR] figaro.orchestrator —   e_nonEU has 233 negative values
+2026-03-28 09:40:08,055 [ERROR] figaro.orchestrator — Fix the issues above and re-run from the appropriate stage.
+2026-03-28 09:40:08,056 [INFO] figaro.run_agentic — 
+Pipeline completed in 1082.0s
+2026-03-28 09:40:08,056 [ERROR] figaro.run_agentic — ⚠️  Human intervention required. See errors above.
+2026-03-28 09:40:08,056 [ERROR] figaro.run_agentic —   Stage 2 exception: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_limit_error', 'message': "This request would exceed your organization's rate limit of 30,000 input tokens per minute (org: 5cdeb590-ee59-47fb-8e12-457106c46e6a, model: claude-sonnet-4-6). For details, refer to: https://docs.claude.com/en/api/rate-limits. You can see the response headers for current usage. Please reduce the prompt length or the maximum tokens requested, or try again later. You may also contact sales at https://claude.com/contact-sales to discuss your options for a rate limit increase."}, 'request_id': 'req_011CZVBHMHuhinhEtHt61Kkz'}
+2026-03-28 09:40:08,056 [ERROR] figaro.run_agentic —   e_nonEU has 233 negative values
+2026-03-28 09:40:08,056 [INFO] figaro.run_agentic — 
+============================================================
+2026-03-28 09:40:08,056 [INFO] figaro.run_agentic — PIPELINE METRICS SUMMARY
+2026-03-28 09:40:08,056 [INFO] figaro.run_agentic — ============================================================
+2026-03-28 09:40:08,056 [INFO] figaro.run_agentic —   s1: 316.8s
+2026-03-28 09:40:08,056 [INFO] figaro.run_agentic —   s2: 762.4s  [FAILED: Error code: 429 - {'type': 'error', 'error': {'type': 'rate_]

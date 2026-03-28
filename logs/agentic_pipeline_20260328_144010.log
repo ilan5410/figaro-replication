@@ -1,0 +1,49 @@
+2026-03-28 14:40:10,404 [INFO] figaro.run_agentic — Log file: /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/logs/agentic_pipeline_20260328_144010.log
+2026-03-28 14:40:10,404 [INFO] figaro.run_agentic — === FIGARO Agentic Pipeline ===
+2026-03-28 14:40:10,404 [INFO] figaro.run_agentic — Config: config.yaml
+2026-03-28 14:40:10,404 [INFO] figaro.run_agentic — Reference year: 2010
+2026-03-28 14:40:10,404 [INFO] figaro.run_agentic — Table type: product-by-product
+2026-03-28 14:40:10,404 [INFO] figaro.run_agentic — Running single stage: 6
+2026-03-28 14:40:10,405 [WARNING] figaro.orchestrator — langgraph.checkpoint.sqlite not available — running without checkpointing
+2026-03-28 14:40:10,426 [INFO] figaro.orchestrator — Compiled pipeline without checkpointing
+2026-03-28 14:40:10,426 [INFO] figaro.run_agentic — Starting pipeline execution...
+2026-03-28 14:40:10,428 [INFO] figaro.s6_review — === Stage 6: Review Agent (Agentic) ===
+2026-03-28 14:40:13,654 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:40:24,608 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:40:24,616 [INFO] figaro.tools — [s6_review] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s6_review_20260328_144024_f.py
+2026-03-28 14:40:25,756 [INFO] figaro.tools — [s6_review] Script succeeded
+2026-03-28 14:40:42,046 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:40:42,066 [INFO] figaro.tools — [s6_review] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s6_review_20260328_144042_f.py
+2026-03-28 14:40:43,199 [INFO] figaro.tools — [s6_review] Script succeeded
+2026-03-28 14:41:00,349 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:41:00,373 [INFO] figaro.tools — [s6_review] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s6_review_20260328_144100_f.py
+2026-03-28 14:41:01,673 [INFO] figaro.tools — [s6_review] Script succeeded
+2026-03-28 14:41:12,391 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:41:12,399 [INFO] figaro.tools — [s6_review] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s6_review_20260328_144112_f.py
+2026-03-28 14:41:13,544 [INFO] figaro.tools — [s6_review] Script succeeded
+2026-03-28 14:41:32,913 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:41:32,929 [INFO] figaro.tools — [s6_review] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s6_review_20260328_144132_f.py
+2026-03-28 14:41:34,088 [INFO] figaro.tools — [s6_review] Script succeeded
+2026-03-28 14:42:00,322 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:42:00,355 [INFO] figaro.tools — [s6_review] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s6_review_20260328_144200_f.py
+2026-03-28 14:42:01,577 [INFO] figaro.tools — [s6_review] Script succeeded
+2026-03-28 14:42:06,275 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:42:06,301 [INFO] figaro.tools — [s6_review] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s6_review_20260328_144206_f.py
+2026-03-28 14:42:06,757 [INFO] figaro.tools — [s6_review] Script succeeded
+2026-03-28 14:42:28,328 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:42:28,345 [INFO] figaro.tools — [s6_review] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s6_review_20260328_144228_f.py
+2026-03-28 14:42:28,750 [INFO] figaro.tools — [s6_review] Script succeeded
+2026-03-28 14:42:46,642 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 14:42:46,655 [INFO] figaro.s6_review — Review agent completed in 156.2s
+2026-03-28 14:42:46,656 [WARNING] figaro.s6_review — Review report file not found after agent run
+2026-03-28 14:42:46,657 [INFO] figaro.run_agentic — 
+Pipeline completed in 156.2s
+2026-03-28 14:42:46,657 [WARNING] figaro.run_agentic — Review stage did not produce a report
+2026-03-28 14:42:46,657 [INFO] figaro.run_agentic — 
+============================================================
+2026-03-28 14:42:46,658 [INFO] figaro.run_agentic — PIPELINE METRICS SUMMARY
+2026-03-28 14:42:46,658 [INFO] figaro.run_agentic — ============================================================
+2026-03-28 14:42:46,658 [INFO] figaro.run_agentic —   s6: 156.2s  report=✗
+2026-03-28 14:42:46,659 [INFO] figaro.run_agentic — Pipeline state saved to /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/outputs/pipeline_state_summary.json
+2026-03-28 14:42:46,659 [INFO] figaro.run_agentic — === Pipeline complete ===
+2026-03-28 14:42:46,659 [INFO] figaro.run_agentic — Outputs: outputs/tables/, outputs/figures/, outputs/review_report.md

@@ -1,0 +1,54 @@
+2026-03-28 10:27:15,750 [INFO] figaro.run_agentic — Log file: /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/logs/agentic_pipeline_20260328_102715.log
+2026-03-28 10:27:15,750 [INFO] figaro.run_agentic — === FIGARO Agentic Pipeline ===
+2026-03-28 10:27:15,750 [INFO] figaro.run_agentic — Config: config.yaml
+2026-03-28 10:27:15,750 [INFO] figaro.run_agentic — Reference year: 2010
+2026-03-28 10:27:15,750 [INFO] figaro.run_agentic — Table type: product-by-product
+2026-03-28 10:27:15,750 [INFO] figaro.run_agentic — Running single stage: 3
+2026-03-28 10:27:15,751 [WARNING] figaro.orchestrator — langgraph.checkpoint.sqlite not available — running without checkpointing
+2026-03-28 10:27:15,772 [INFO] figaro.orchestrator — Compiled pipeline without checkpointing
+2026-03-28 10:27:15,772 [INFO] figaro.run_agentic — Starting pipeline execution...
+2026-03-28 10:27:15,773 [INFO] figaro.s3_model — === Stage 3: Model Construction (Deterministic) ===
+2026-03-28 10:27:15,777 [INFO] stage3 — === Stage 3: Model Construction ===
+2026-03-28 10:27:15,777 [INFO] stage3 — Loading prepared data...
+2026-03-28 10:27:15,777 [INFO] stage3 —   EU countries: 28, CPA codes: 64, N_EU: 1792
+2026-03-28 10:27:15,777 [INFO] stage3 —   Loading Z_EU.csv...
+2026-03-28 10:27:15,982 [INFO] stage3 —   Z_EU: (1792, 1792), sum=10811191.4
+2026-03-28 10:27:15,982 [INFO] stage3 —   e_nonEU: shape=(1792,), sum=1871250.7
+2026-03-28 10:27:15,983 [INFO] stage3 —   x_EU: shape=(1792,), sum=24020571.1, zeros=35
+2026-03-28 10:27:15,983 [INFO] stage3 —   em_EU: shape=(1792,), sum=218207
+2026-03-28 10:27:15,983 [INFO] stage3 — Building technical coefficients matrix A...
+2026-03-28 10:27:15,987 [INFO] stage3 —   A: max column sum=0.841320, columns >= 1: 0
+2026-03-28 10:27:15,987 [INFO] stage3 — Building Leontief inverse L = (I - A)^{-1} (1792×1792)...
+2026-03-28 10:27:15,996 [INFO] stage3 —   Inverting (I - A)...
+2026-03-28 10:27:16,146 [INFO] stage3 —   Leontief inverse computed in 0.2s
+2026-03-28 10:27:16,151 [INFO] stage3 —   L: min=0.000000, max=2.257612
+2026-03-28 10:27:16,151 [INFO] stage3 —   L: negative elements (< -1e-10): 0
+2026-03-28 10:27:16,151 [INFO] stage3 —   L: diagonal elements < 1: 0
+2026-03-28 10:27:16,207 [INFO] stage3 —   Identity check max(|L*(I-A) - I|) = 1.20e-14
+2026-03-28 10:27:16,207 [INFO] stage3 — Building employment coefficients d...
+2026-03-28 10:27:16,207 [INFO] stage3 —   d: min=0.000000, max=1.145008, mean=0.017001
+2026-03-28 10:27:16,207 [INFO] stage3 —   d: zeros=136, negatives=0
+2026-03-28 10:27:16,207 [INFO] stage3 — Computing employment content of exports...
+2026-03-28 10:27:16,209 [INFO] stage3 —   Total EU export-supported employment: 24879 thousand persons
+2026-03-28 10:27:16,209 [INFO] stage3 —   Paper reference: ~25,597 thousand persons
+2026-03-28 10:27:16,209 [INFO] stage3 — Computing 28×28 country employment matrix...
+2026-03-28 10:27:16,230 [INFO] stage3 —   Country matrix: total=24879, shape=(28, 28)
+2026-03-28 10:27:16,231 [INFO] stage3 — Saving A_EU.csv...
+2026-03-28 10:27:17,940 [INFO] stage3 — Saving L_EU.csv...
+2026-03-28 10:27:20,445 [INFO] stage3 — Saving d_EU.csv...
+2026-03-28 10:27:20,449 [INFO] stage3 — Saving em_exports_total.csv...
+2026-03-28 10:27:20,451 [INFO] stage3 — Saving em_exports_country_matrix.csv...
+2026-03-28 10:27:20,453 [INFO] stage3 — All model outputs saved to /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/model
+2026-03-28 10:27:20,453 [INFO] stage3 — === Stage 3 complete ===
+2026-03-28 10:27:20,455 [INFO] figaro.s3_model — Model construction completed in 4.7s
+2026-03-28 10:27:20,457 [INFO] figaro.run_agentic — 
+Pipeline completed in 4.7s
+2026-03-28 10:27:20,457 [WARNING] figaro.run_agentic — Review stage did not produce a report
+2026-03-28 10:27:20,457 [INFO] figaro.run_agentic — 
+============================================================
+2026-03-28 10:27:20,457 [INFO] figaro.run_agentic — PIPELINE METRICS SUMMARY
+2026-03-28 10:27:20,457 [INFO] figaro.run_agentic — ============================================================
+2026-03-28 10:27:20,457 [INFO] figaro.run_agentic —   s3: 4.7s
+2026-03-28 10:27:20,457 [INFO] figaro.run_agentic — Pipeline state saved to /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/outputs/pipeline_state_summary.json
+2026-03-28 10:27:20,458 [INFO] figaro.run_agentic — === Pipeline complete ===
+2026-03-28 10:27:20,458 [INFO] figaro.run_agentic — Outputs: outputs/tables/, outputs/figures/, outputs/review_report.md

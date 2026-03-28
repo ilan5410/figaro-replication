@@ -5,10 +5,10 @@ data/model/
 data/decomposition/
 
 # Agent-generated scripts (ephemeral, recreated each run)
-scripts/
+#scripts/
 
 # Logs
-logs/
+#logs/
 
 # Python
 __pycache__/

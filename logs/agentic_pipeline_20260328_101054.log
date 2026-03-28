@@ -1,0 +1,21 @@
+2026-03-28 10:10:54,088 [INFO] figaro.run_agentic — Log file: /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/logs/agentic_pipeline_20260328_101054.log
+2026-03-28 10:10:54,088 [INFO] figaro.run_agentic — === FIGARO Agentic Pipeline ===
+2026-03-28 10:10:54,088 [INFO] figaro.run_agentic — Config: config.yaml
+2026-03-28 10:10:54,088 [INFO] figaro.run_agentic — Reference year: 2010
+2026-03-28 10:10:54,088 [INFO] figaro.run_agentic — Table type: product-by-product
+2026-03-28 10:10:54,088 [INFO] figaro.run_agentic — Running single stage: 2
+2026-03-28 10:10:54,089 [WARNING] figaro.orchestrator — langgraph.checkpoint.sqlite not available — running without checkpointing
+2026-03-28 10:10:54,109 [INFO] figaro.orchestrator — Compiled pipeline without checkpointing
+2026-03-28 10:10:54,109 [INFO] figaro.run_agentic — Starting pipeline execution...
+2026-03-28 10:10:54,111 [INFO] figaro.s2_preparation — === Stage 2: Data Preparation Agent (Agentic) ===
+2026-03-28 10:10:54,111 [INFO] figaro.s2_preparation — Prepared data already exists — skipping preparation
+2026-03-28 10:10:54,111 [INFO] figaro.run_agentic — 
+Pipeline completed in 0.0s
+2026-03-28 10:10:54,112 [WARNING] figaro.run_agentic — Review stage did not produce a report
+2026-03-28 10:10:54,112 [INFO] figaro.run_agentic — 
+============================================================
+2026-03-28 10:10:54,112 [INFO] figaro.run_agentic — PIPELINE METRICS SUMMARY
+2026-03-28 10:10:54,112 [INFO] figaro.run_agentic — ============================================================
+2026-03-28 10:10:54,112 [INFO] figaro.run_agentic — Pipeline state saved to /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/outputs/pipeline_state_summary.json
+2026-03-28 10:10:54,112 [INFO] figaro.run_agentic — === Pipeline complete ===
+2026-03-28 10:10:54,112 [INFO] figaro.run_agentic — Outputs: outputs/tables/, outputs/figures/, outputs/review_report.md

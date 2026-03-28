@@ -1,0 +1,66 @@
+2026-03-28 14:10:39,496 [INFO] figaro.run_agentic — Log file: /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/logs/agentic_pipeline_20260328_141039.log
+2026-03-28 14:10:39,496 [INFO] figaro.run_agentic — === FIGARO Agentic Pipeline ===
+2026-03-28 14:10:39,496 [INFO] figaro.run_agentic — Config: config.yaml
+2026-03-28 14:10:39,496 [INFO] figaro.run_agentic — Reference year: 2010
+2026-03-28 14:10:39,496 [INFO] figaro.run_agentic — Table type: product-by-product
+2026-03-28 14:10:39,496 [INFO] figaro.run_agentic — Running single stage: 4
+2026-03-28 14:10:39,497 [WARNING] figaro.orchestrator — langgraph.checkpoint.sqlite not available — running without checkpointing
+2026-03-28 14:10:39,518 [INFO] figaro.orchestrator — Compiled pipeline without checkpointing
+2026-03-28 14:10:39,518 [INFO] figaro.run_agentic — Starting pipeline execution...
+2026-03-28 14:10:39,520 [INFO] figaro.s4_decomposition — === Stage 4: Decomposition (Deterministic) ===
+2026-03-28 14:10:39,523 [INFO] stage4 — === Stage 4: Decomposition ===
+2026-03-28 14:10:39,523 [INFO] stage4 — Loading prepared and model data...
+2026-03-28 14:10:39,530 [INFO] stage4 —   Loading L_EU.csv...
+2026-03-28 14:10:39,894 [INFO] stage4 —   Loaded: L=(1792, 1792), d=(1792,), e=(1792,), em_mat=(28, 28)
+2026-03-28 14:10:39,894 [INFO] stage4 — Computing domestic/spillover decomposition...
+2026-03-28 14:10:39,894 [INFO] stage4 —   AT: domestic=372, spill_recv=105, spill_gen=160, share=11.8%, spill%=30.1%
+2026-03-28 14:10:39,895 [INFO] stage4 —   BE: domestic=531, spill_recv=141, spill_gen=224, share=15.0%, spill%=29.7%
+2026-03-28 14:10:39,895 [INFO] stage4 —   BG: domestic=496, spill_recv=85, spill_gen=22, share=16.3%, spill%=4.3%
+2026-03-28 14:10:39,895 [INFO] stage4 —   CY: domestic=50, spill_recv=6, spill_gen=5, share=13.9%, spill%=9.8%
+2026-03-28 14:10:39,895 [INFO] stage4 —   CZ: domestic=418, spill_recv=192, spill_gen=92, share=12.3%, spill%=18.0%
+2026-03-28 14:10:39,895 [INFO] stage4 —   DE: domestic=4373, spill_recv=751, spill_gen=798, share=12.6%, spill%=15.4%
+2026-03-28 14:10:39,895 [INFO] stage4 —   DK: domestic=327, spill_recv=45, spill_gen=133, share=13.6%, spill%=28.9%
+2026-03-28 14:10:39,895 [INFO] stage4 —   EE: domestic=80, spill_recv=19, spill_gen=15, share=17.8%, spill%=15.9%
+2026-03-28 14:10:39,895 [INFO] stage4 —   EL: domestic=303, spill_recv=37, spill_gen=33, share=7.3%, spill%=9.8%
+2026-03-28 14:10:39,895 [INFO] stage4 —   ES: domestic=1468, spill_recv=236, spill_gen=162, share=8.8%, spill%=9.9%
+2026-03-28 14:10:39,895 [INFO] stage4 —   FI: domestic=313, spill_recv=47, spill_gen=86, share=14.6%, spill%=21.5%
+2026-03-28 14:10:39,895 [INFO] stage4 —   FR: domestic=2180, spill_recv=346, spill_gen=477, share=9.5%, spill%=17.9%
+2026-03-28 14:10:39,895 [INFO] stage4 —   HR: domestic=137, spill_recv=24, spill_gen=8, share=9.7%, spill%=5.3%
+2026-03-28 14:10:39,895 [INFO] stage4 —   HU: domestic=374, spill_recv=116, spill_gen=110, share=12.7%, spill%=22.8%
+2026-03-28 14:10:39,895 [INFO] stage4 —   IE: domestic=355, spill_recv=48, spill_gen=230, share=21.0%, spill%=39.4%
+2026-03-28 14:10:39,895 [INFO] stage4 —   IT: domestic=2022, spill_recv=273, spill_gen=436, share=9.4%, spill%=17.7%
+2026-03-28 14:10:39,895 [INFO] stage4 —   LT: domestic=176, spill_recv=24, spill_gen=14, share=16.3%, spill%=7.4%
+2026-03-28 14:10:39,895 [INFO] stage4 —   LU: domestic=40, spill_recv=10, spill_gen=62, share=19.6%, spill%=60.7%
+2026-03-28 14:10:39,895 [INFO] stage4 —   LV: domestic=108, spill_recv=22, spill_gen=8, share=15.8%, spill%=6.7%
+2026-03-28 14:10:39,895 [INFO] stage4 —   MT: domestic=13, spill_recv=2, spill_gen=6, share=11.0%, spill%=30.8%
+2026-03-28 14:10:39,895 [INFO] stage4 —   NL: domestic=839, spill_recv=208, spill_gen=165, share=12.0%, spill%=16.4%
+2026-03-28 14:10:39,895 [INFO] stage4 —   PL: domestic=1272, spill_recv=382, spill_gen=107, share=10.9%, spill%=7.7%
+2026-03-28 14:10:39,895 [INFO] stage4 —   PT: domestic=289, spill_recv=69, spill_gen=47, share=7.4%, spill%=14.0%
+2026-03-28 14:10:39,895 [INFO] stage4 —   RO: domestic=702, spill_recv=152, spill_gen=34, share=9.8%, spill%=4.7%
+2026-03-28 14:10:39,895 [INFO] stage4 —   SE: domestic=437, spill_recv=72, spill_gen=173, share=12.0%, spill%=28.3%
+2026-03-28 14:10:39,895 [INFO] stage4 —   SI: domestic=113, spill_recv=34, spill_gen=24, share=15.4%, spill%=17.7%
+2026-03-28 14:10:39,895 [INFO] stage4 —   SK: domestic=163, spill_recv=92, spill_gen=54, share=11.9%, spill%=24.7%
+2026-03-28 14:10:39,895 [INFO] stage4 —   UK: domestic=2986, spill_recv=401, spill_gen=257, share=13.8%, spill%=7.9%
+2026-03-28 14:10:39,896 [INFO] stage4 — 
+  Total export-supported employment (domestic+spillover sum): 24879 THS
+2026-03-28 14:10:39,896 [INFO] stage4 — Computing industry-level decomposition (10 sectors)...
+2026-03-28 14:10:39,909 [INFO] stage4 —   Table 4 built: shape=(10, 10), total=24879
+2026-03-28 14:10:41,078 [INFO] stage4 —   Figure 3 data built: 10 sectors
+2026-03-28 14:10:41,079 [INFO] stage4 — Saving country_decomposition.csv...
+2026-03-28 14:10:41,080 [INFO] stage4 — Saving annex_c_matrix.csv...
+2026-03-28 14:10:41,081 [INFO] stage4 — Saving industry_table4.csv...
+2026-03-28 14:10:41,082 [INFO] stage4 — Saving industry_figure3.csv...
+2026-03-28 14:10:41,082 [INFO] stage4 — All decomposition outputs saved to /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/decomposition
+2026-03-28 14:10:41,082 [INFO] stage4 — === Stage 4 complete ===
+2026-03-28 14:10:41,082 [INFO] figaro.s4_decomposition — Decomposition completed in 1.6s
+2026-03-28 14:10:41,083 [INFO] figaro.run_agentic — 
+Pipeline completed in 1.6s
+2026-03-28 14:10:41,083 [WARNING] figaro.run_agentic — Review stage did not produce a report
+2026-03-28 14:10:41,083 [INFO] figaro.run_agentic — 
+============================================================
+2026-03-28 14:10:41,083 [INFO] figaro.run_agentic — PIPELINE METRICS SUMMARY
+2026-03-28 14:10:41,083 [INFO] figaro.run_agentic — ============================================================
+2026-03-28 14:10:41,083 [INFO] figaro.run_agentic —   s4: 1.6s
+2026-03-28 14:10:41,083 [INFO] figaro.run_agentic — Pipeline state saved to /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/outputs/pipeline_state_summary.json
+2026-03-28 14:10:41,083 [INFO] figaro.run_agentic — === Pipeline complete ===
+2026-03-28 14:10:41,083 [INFO] figaro.run_agentic — Outputs: outputs/tables/, outputs/figures/, outputs/review_report.md
