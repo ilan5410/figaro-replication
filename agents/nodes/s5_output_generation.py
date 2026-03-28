@@ -1,55 +1,113 @@
 """
-Stage 5: Output Generation — deterministic node (no LLM call).
+Stage 5: Output Generation Agent node (LangGraph).
 
-Wraps src/stage5_output_generation.py. All figures and tables are
-fully specified by the data schema — no reasoning required.
+Invokes Claude to produce all tables and figures matching the paper, using
+matplotlib and pandas. The agent writes and executes a single Python script
+that generates all 7 outputs in one pass.
 
-Replaced agentic approach because:
-  - Output format is 100% specified (fixed columns, fixed plot specs)
-  - Agent was hitting recursion limits producing partial outputs
-  - Cost: ~$0.15/run eliminated; runtime: ~3s vs ~4min
+Prompt engineering applied (same pattern as S6):
+  - All file paths and column names provided upfront — no exploration needed
+  - Explicit tool usage rules: execute_python only, never read_file on CSVs
+  - Explicit 3-step workflow: write script → execute → write summary → stop
+  - recursion_limit=15 is sufficient (8 steps nominal, 10 with one fix pass)
 """
-import importlib
 import logging
-import sys
 import time
 from pathlib import Path
 
+from langchain_anthropic import ChatAnthropic
+from langgraph.prebuilt import create_react_agent
+
 from agents.state import PipelineState
+from agents.tools import get_tools_for_stage
 
 log = logging.getLogger("figaro.s5_output")
 
 REPO_ROOT = Path(__file__).parent.parent.parent
+PROMPTS_DIR = Path(__file__).parent.parent / "prompts"
+
+TIMEOUT_S = 300
 
 
 def run_s5_output_generation(state: PipelineState) -> PipelineState:
-    """LangGraph node: Run deterministic output generation."""
-    log.info("=== Stage 5: Output Generation (Deterministic) ===")
-    cfg_path = REPO_ROOT / "config.yaml"
+    """LangGraph node: Run the output generation agent."""
+    log.info("=== Stage 5: Output Generation Agent (Agentic) ===")
+    cfg = state["config"]
+    year = cfg.get("reference_year", 2010)
     errors = list(state.get("errors", []))
     stage_metrics = dict(state.get("stage_metrics") or {})
 
+    # Clean up scripts from previous runs of this stage
+    scripts_dir = REPO_ROOT / "scripts"
+    scripts_dir.mkdir(exist_ok=True)
+    cleaned = [p.unlink() or p.name for p in scripts_dir.glob("tmp_s5_*")]
+    if cleaned:
+        log.info(f"Cleaned {len(cleaned)} old s5 scripts")
+
+    system_prompt = (PROMPTS_DIR / "output_generation.md").read_text(encoding="utf-8")
+
+    task_message = f"""
+Produce all tables and figures for the FIGARO employment content replication, year {year}.
+
+**TOOL USAGE RULES — follow exactly:**
+1. Use `execute_python` for ALL figure and table generation (matplotlib, pandas, openpyxl)
+2. Use `write_file` ONLY to save outputs/output_warnings.txt at the end
+3. NEVER use `read_file` on any CSV or matrix file — load them in Python scripts instead
+4. NEVER use `list_directory` — all paths are given below
+
+**Workflow (3 steps only):**
+Step 1 — execute_python: Write and run ONE script that generates ALL 7 outputs.
+Step 2 — write_file: Save a one-line summary to outputs/output_warnings.txt.
+Step 3 — Stop. Do not run more scripts or re-read anything.
+
+Input files (all exist — use these exact paths, load with pandas in Python):
+  - data/prepared/Em_EU.csv              — col: em_EU_THS_PER
+  - data/prepared/e_nonEU.csv            — col: e_nonEU_MIO_EUR
+  - data/prepared/metadata.json          — key "eu_countries": list of 28 ISO-2 codes,
+                                           key "cpa_codes": list of 64 CPA codes
+  - data/model/em_exports_country_matrix.csv — 28×28 (index_col=0)
+  - data/decomposition/country_decomposition.csv — 28 rows, cols:
+      country, total_employment_THS, total_in_country_THS, total_by_country_THS,
+      domestic_effect_THS, spillover_received_THS, spillover_generated_THS,
+      direct_effect_THS, indirect_effect_THS, export_emp_share_pct,
+      domestic_share_pct, spillover_share_pct
+  - data/decomposition/annex_c_matrix.csv    — 28×28 (index_col=0)
+  - data/decomposition/industry_table4.csv   — 10×10 (index_col=0)
+  - data/decomposition/industry_figure3.csv  — cols: sector, total_employment_THS,
+                                               domestic_THS, spillover_THS
+
+Outputs to produce (save to outputs/figures/ and outputs/tables/):
+  1. outputs/tables/table1_employment_exports.csv + .xlsx
+  2. outputs/figures/figure1.png + .pdf
+  3. outputs/figures/figure2.png + .pdf
+  4. outputs/tables/table3_spillover.csv + .xlsx
+  5. outputs/tables/table4_industry.csv + .xlsx
+  6. outputs/figures/figure3.png + .pdf
+  7. outputs/tables/annex_c.csv + .xlsx
+"""
+
+    model = ChatAnthropic(model="claude-sonnet-4-6", max_tokens=4096)
+    tools = get_tools_for_stage("s5_output", timeout=TIMEOUT_S)
+
+    agent = create_react_agent(model=model, tools=tools, prompt=system_prompt)
+
     t0 = time.time()
     try:
-        sys.path.insert(0, str(REPO_ROOT))
-        mod = importlib.import_module("src.stage5_output_generation")
-
-        old_argv = sys.argv
-        sys.argv = ["stage5_output_generation", "--config", str(cfg_path)]
-        try:
-            mod.main()
-        finally:
-            sys.argv = old_argv
-
+        result = agent.invoke(
+            {"messages": [{"role": "user", "content": task_message}]},
+            config={"recursion_limit": 15},
+        )
         elapsed = time.time() - t0
-        log.info(f"Output generation completed in {elapsed:.1f}s")
+        n_steps = len(result.get("messages", [])) - 1
+        log.info(f"Output generation agent completed in {elapsed:.1f}s ({n_steps} steps used of limit 15)")
 
         figures_dir = REPO_ROOT / "outputs" / "figures"
         tables_dir = REPO_ROOT / "outputs" / "tables"
         figures = [str(p) for p in sorted(figures_dir.glob("*.png"))] if figures_dir.exists() else []
         tables = [str(p) for p in sorted(tables_dir.glob("*.csv"))] if tables_dir.exists() else []
+        log.info(f"Produced {len(figures)} figures, {len(tables)} tables")
 
-        # Check all expected outputs exist
+        # Check for missing expected outputs
         expected = [
             "outputs/tables/table1_employment_exports.csv",
             "outputs/figures/figure1.png",
@@ -63,7 +121,6 @@ def run_s5_output_generation(state: PipelineState) -> PipelineState:
             if not (REPO_ROOT / rel_path).exists():
                 errors.append(f"Stage 5: {rel_path} not produced")
 
-        log.info(f"Produced {len(figures)} figures, {len(tables)} tables")
         stage_metrics["s5"] = {
             "elapsed_s": elapsed,
             "figures_produced": len(figures),
@@ -78,23 +135,12 @@ def run_s5_output_generation(state: PipelineState) -> PipelineState:
             "stage_metrics": stage_metrics,
         }
 
-    except SystemExit as e:
-        elapsed = time.time() - t0
-        if e.code != 0:
-            msg = f"Stage 5 exited with code {e.code}"
-            log.error(msg)
-            errors.append(msg)
-            stage_metrics["s5"] = {"elapsed_s": elapsed, "error": msg}
-            return {**state, "stage": 5, "errors": errors,
-                    "human_intervention_needed": True, "stage_metrics": stage_metrics}
-        stage_metrics["s5"] = {"elapsed_s": elapsed}
-        return {**state, "stage": 5, "stage_metrics": stage_metrics, "errors": errors}
-
     except Exception as exc:
         elapsed = time.time() - t0
-        log.error(f"Output generation failed: {exc}", exc_info=True)
+        log.error(f"Output generation agent failed: {exc}", exc_info=True)
         errors.append(f"Stage 5 exception: {exc}")
         stage_metrics["s5"] = {"elapsed_s": elapsed, "error": str(exc)}
+
         return {
             **state,
             "stage": 5,

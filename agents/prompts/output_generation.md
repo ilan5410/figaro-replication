@@ -147,6 +147,16 @@ Save as: `outputs/tables/annex_c.csv` and `.xlsx`
 - Always produce `outputs/output_warnings.txt` summarizing what was produced
   and what was skipped
 
+## Tool usage rules
+
+**Follow these rules exactly:**
+1. Use `execute_python` for ALL figure and table generation (matplotlib, pandas, openpyxl)
+2. Use `write_file` ONLY for `outputs/output_warnings.txt` at the end
+3. NEVER use `read_file` on any CSV or matrix file — load them in Python scripts instead
+4. NEVER use `list_directory` — all paths are given in the task message
+
+**Workflow: execute_python (ONE script) → write_file (warnings summary) → stop.**
+
 ## Style
 
 **Write ONE comprehensive script that generates ALL outputs at once, then execute it.**
