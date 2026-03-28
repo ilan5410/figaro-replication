@@ -1,5 +1,5 @@
 {
-  "stage": 4,
+  "stage": 6,
   "raw_data_paths": {
     "iciot": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/raw/figaro_iciot_2010.csv",
     "employment": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/raw/employment_2010.csv",
@@ -30,12 +30,16 @@
   },
   "output_paths": null,
   "review_report_path": null,
-  "review_passed": null,
-  "errors": [],
+  "review_passed": false,
+  "errors": [
+    "Stage 6: review_report.md not produced"
+  ],
   "human_intervention_needed": false,
   "stage_metrics": {
-    "s4": {
-      "elapsed_s": 1.5626239776611328
+    "s6": {
+      "elapsed_s": 156.21825194358826,
+      "retries": 0,
+      "report_exists": false
     }
   }
 }
