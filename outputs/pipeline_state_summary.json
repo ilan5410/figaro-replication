@@ -29,17 +29,15 @@
     "industry_figure3": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/data/decomposition/industry_figure3.csv"
   },
   "output_paths": null,
-  "review_report_path": null,
+  "review_report_path": "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/outputs/review_report.md",
   "review_passed": false,
-  "errors": [
-    "Stage 6: review_report.md not produced"
-  ],
+  "errors": [],
   "human_intervention_needed": false,
   "stage_metrics": {
     "s6": {
-      "elapsed_s": 156.21825194358826,
+      "elapsed_s": 238.2892291545868,
       "retries": 0,
-      "report_exists": false
+      "report_exists": true
     }
   }
 }
