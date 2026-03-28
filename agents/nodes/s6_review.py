@@ -45,30 +45,35 @@ def run_s6_review(state: PipelineState) -> PipelineState:
     cfg = state["config"]
     year = cfg.get("reference_year", 2010)
 
+    n_total = len(cfg.get("eu_member_states", [])) * cfg.get("n_industries", 64)
+
     # Build the task message for the agent
-    # Keep it specific and goal-oriented (see FIGARO_AGENT_BEST_PRACTICES.md §3.3)
     task_message = f"""
 Review the FIGARO employment content replication outputs for year {year}.
 
-Run all verification checks described in your system prompt:
-  - 7.1 Data integrity checks
-  - 7.2 Leontief model checks
-  - 7.3 Accounting identity checks
-  - 7.4 Cross-checks against paper values
-  - 7.5 Reasonableness checks
+**Do NOT list files or read files one by one before starting. All file paths are known — write a verification script immediately.**
 
-Expected files location:
-  - data/prepared/: Z_EU.csv, e_nonEU.csv, x_EU.csv, Em_EU.csv, metadata.json
-  - data/model/: A_EU.csv, L_EU.csv, d_EU.csv, em_exports_total.csv, em_exports_country_matrix.csv
-  - data/decomposition/: country_decomposition.csv, annex_c_matrix.csv, industry_table4.csv
+Write ONE Python script that loads all data, runs all numerical checks (sections 7.1–7.5
+from your system prompt), and prints a structured summary of PASS/WARN/FAIL results.
+Execute that script, then write outputs/review_report.md based on the printed output.
 
-Save the complete review report to: outputs/review_report.md
+Input files (all exist, use these exact paths):
+  - data/prepared/Z_EU.csv              — {n_total}×{n_total} matrix (index_col=0)
+  - data/prepared/e_nonEU.csv           — col: e_nonEU_MIO_EUR
+  - data/prepared/x_EU.csv              — col: x_EU_MIO_EUR
+  - data/prepared/Em_EU.csv             — col: em_EU_THS_PER
+  - data/prepared/metadata.json         — keys: eu_countries, cpa_codes, n_total
+  - data/model/A_EU.csv                 — technical coefficients (index_col=0)
+  - data/model/L_EU.csv                 — Leontief inverse (index_col=0)
+  - data/model/d_EU.csv                 — employment coefficients (index_col=0)
+  - data/model/em_exports_total.csv     — employment content of exports (index_col=0)
+  - data/model/em_exports_country_matrix.csv — 28×28 (index_col=0)
+  - data/decomposition/country_decomposition.csv — cols: country, total_employment_THS,
+      total_in_country_THS, total_by_country_THS, domestic_effect_THS,
+      spillover_received_THS, spillover_generated_THS, spillover_share_pct
 
-After writing the report, read it back to confirm it was written correctly,
-then report:
-  - How many PASS / WARN / FAIL checks
-  - Whether any FAIL checks were found (True/False)
-  - A 2-3 sentence overall assessment
+After writing the report, stop. Do not re-read files or run additional scripts.
+Report: PASS/WARN/FAIL counts, any FAILs found (True/False), 2-3 sentence assessment.
 """
 
     # Clean up scripts from previous runs of this stage
@@ -106,7 +111,7 @@ then report:
         # Invoke the agent
         result = agent.invoke(
             {"messages": [{"role": "user", "content": task_message}]},
-            config={"recursion_limit": 20},  # max ~10 tool calls
+            config={"recursion_limit": 12},  # write(1)+execute(1)+write_report(1)+fix(1) = ~8 steps
         )
 
         elapsed = time.time() - t0
