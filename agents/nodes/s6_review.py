@@ -71,6 +71,13 @@ then report:
   - A 2-3 sentence overall assessment
 """
 
+    # Clean up scripts from previous runs of this stage
+    scripts_dir = REPO_ROOT / "scripts"
+    scripts_dir.mkdir(exist_ok=True)
+    cleaned = [p.unlink() or p.name for p in scripts_dir.glob("tmp_s6_*")]
+    if cleaned:
+        log.info(f"Cleaned {len(cleaned)} old s6 scripts")
+
     # Initialize the model
     model = ChatAnthropic(
         model="claude-sonnet-4-6",

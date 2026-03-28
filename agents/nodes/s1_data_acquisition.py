@@ -58,6 +58,13 @@ def run_s1_data_acquisition(state: PipelineState) -> PipelineState:
             "stage_metrics": stage_metrics,
         }
 
+    # Clean up scripts from previous runs of this stage
+    scripts_dir = REPO_ROOT / "scripts"
+    scripts_dir.mkdir(exist_ok=True)
+    cleaned = [p.unlink() or p.name for p in scripts_dir.glob("tmp_s1_*")]
+    if cleaned:
+        log.info(f"Cleaned {len(cleaned)} old s1 scripts")
+
     system_prompt = (PROMPTS_DIR / "data_acquisition.md").read_text(encoding="utf-8")
 
     task_message = f"""

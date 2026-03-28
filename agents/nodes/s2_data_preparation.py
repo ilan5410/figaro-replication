@@ -59,6 +59,13 @@ def run_s2_data_preparation(state: PipelineState) -> PipelineState:
             "stage_metrics": stage_metrics,
         }
 
+    # Clean up scripts from previous runs of this stage
+    scripts_dir = REPO_ROOT / "scripts"
+    scripts_dir.mkdir(exist_ok=True)
+    cleaned = [p.unlink() or p.name for p in scripts_dir.glob("tmp_s2_*")]
+    if cleaned:
+        log.info(f"Cleaned {len(cleaned)} old s2 scripts")
+
     system_prompt = (PROMPTS_DIR / "data_preparation.md").read_text(encoding="utf-8")
 
     raw_paths = state.get("raw_data_paths", {})

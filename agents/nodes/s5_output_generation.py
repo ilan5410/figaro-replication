@@ -32,6 +32,13 @@ def run_s5_output_generation(state: PipelineState) -> PipelineState:
     errors = list(state.get("errors", []))
     stage_metrics = dict(state.get("stage_metrics") or {})
 
+    # Clean up scripts from previous runs of this stage
+    scripts_dir = REPO_ROOT / "scripts"
+    scripts_dir.mkdir(exist_ok=True)
+    cleaned = [p.unlink() or p.name for p in scripts_dir.glob("tmp_s5_*")]
+    if cleaned:
+        log.info(f"Cleaned {len(cleaned)} old s5 scripts")
+
     system_prompt = (PROMPTS_DIR / "output_generation.md").read_text(encoding="utf-8")
 
     task_message = f"""
