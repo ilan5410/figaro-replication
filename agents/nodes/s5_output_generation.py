@@ -44,11 +44,22 @@ def run_s5_output_generation(state: PipelineState) -> PipelineState:
     task_message = f"""
 Produce all tables and figures for the FIGARO employment content replication, year {year}.
 
-Input data locations:
-  - data/prepared/    — Em_EU.csv, e_nonEU.csv, metadata.json
-  - data/model/       — em_exports_total.csv, em_exports_country_matrix.csv
-  - data/decomposition/ — country_decomposition.csv, annex_c_matrix.csv,
-                          industry_table4.csv, industry_figure3.csv
+**Do NOT list files or read files first. All file paths and column names are known — write the script immediately.**
+
+Input files (all exist, use these exact paths):
+  - data/prepared/Em_EU.csv              — 1792×1, col: em_EU_THS_PER
+  - data/prepared/e_nonEU.csv            — 1792×1, col: e_nonEU_MIO_EUR
+  - data/prepared/metadata.json          — has key "eu_countries" (list of 28 ISO-2 codes)
+  - data/model/em_exports_total.csv      — 1792×1
+  - data/model/em_exports_country_matrix.csv — 28×28
+  - data/decomposition/country_decomposition.csv — 28 rows, cols include:
+      country, total_employment_THS, total_in_country_THS, total_by_country_THS,
+      domestic_effect_THS, spillover_received_THS, spillover_generated_THS,
+      direct_effect_THS, indirect_effect_THS,
+      export_emp_share_pct, domestic_share_pct, spillover_share_pct
+  - data/decomposition/annex_c_matrix.csv    — 28×28
+  - data/decomposition/industry_table4.csv   — 10×10 sector matrix
+  - data/decomposition/industry_figure3.csv  — by-product breakdown
 
 Outputs to produce:
   1. outputs/tables/table1_employment_exports.csv + .xlsx
@@ -59,8 +70,8 @@ Outputs to produce:
   6. outputs/figures/figure3.png + .pdf   (employment by product)
   7. outputs/tables/annex_c.csv + .xlsx
 
-After producing all outputs, verify each file exists and write a summary to
-outputs/output_warnings.txt listing what was produced and any issues.
+Write ONE Python script that generates all 7 outputs, then execute it.
+After the script succeeds, write a one-line summary to outputs/output_warnings.txt and stop.
 """
 
     model = ChatAnthropic(model="claude-sonnet-4-6", max_tokens=4096)
@@ -72,7 +83,7 @@ outputs/output_warnings.txt listing what was produced and any issues.
     try:
         result = agent.invoke(
             {"messages": [{"role": "user", "content": task_message}]},
-            config={"recursion_limit": 15},  # 1 script + fix = ~6 tool calls
+            config={"recursion_limit": 10},  # write(1) + execute(1) + fix(1) + execute(1) + done(1)
         )
         elapsed = time.time() - t0
         log.info(f"Output generation agent completed in {elapsed:.1f}s")
