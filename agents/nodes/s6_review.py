@@ -124,13 +124,20 @@ Report: PASS/WARN/FAIL counts, any FAILs found (True/False), 2-3 sentence assess
         review_report_path = REPO_ROOT / "outputs" / "review_report.md"
         review_passed = False
 
+        # Fallback: if agent forgot to write the file, save its final message as the report
+        if not review_report_path.exists() and final_message:
+            log.warning("Agent did not write review_report.md — saving final message as report")
+            review_report_path.parent.mkdir(parents=True, exist_ok=True)
+            review_report_path.write_text(
+                f"# FIGARO Review Report (recovered from agent output)\n\n{final_message}"
+            )
+
         if review_report_path.exists():
             report_text = review_report_path.read_text()
             # Parse FAIL count from report
             if "FAIL: 0" in report_text or "SUCCESSFUL REPLICATION" in report_text:
                 review_passed = True
             elif "FAIL:" in report_text:
-                # Extract the FAIL count
                 for line in report_text.splitlines():
                     if line.startswith("- FAIL:"):
                         parts = line.split(":")
