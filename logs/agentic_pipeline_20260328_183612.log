@@ -1,0 +1,53 @@
+2026-03-28 18:36:12,949 [INFO] figaro.run_agentic — Log file: /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/logs/agentic_pipeline_20260328_183612.log
+2026-03-28 18:36:12,949 [INFO] figaro.run_agentic — === FIGARO Agentic Pipeline ===
+2026-03-28 18:36:12,949 [INFO] figaro.run_agentic — Config: config.yaml
+2026-03-28 18:36:12,949 [INFO] figaro.run_agentic — Reference year: 2010
+2026-03-28 18:36:12,949 [INFO] figaro.run_agentic — Table type: product-by-product
+2026-03-28 18:36:12,949 [INFO] figaro.run_agentic — Running single stage: 5
+2026-03-28 18:36:12,950 [WARNING] figaro.orchestrator — langgraph.checkpoint.sqlite not available — running without checkpointing
+2026-03-28 18:36:12,971 [INFO] figaro.orchestrator — Compiled pipeline without checkpointing
+2026-03-28 18:36:12,971 [INFO] figaro.run_agentic — Starting pipeline execution...
+2026-03-28 18:36:12,973 [INFO] figaro.s5_output — === Stage 5: Output Generation Agent (Agentic) ===
+2026-03-28 18:36:12,974 [INFO] figaro.s5_output — Cleaned 1 old s5 scripts
+2026-03-28 18:36:58,287 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 18:37:42,468 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 18:38:27,994 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 18:38:38,128 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 18:38:38,146 [INFO] figaro.tools — [s5_output] Executing /Users/ilanpargamin/Dossiers importants non sync/figaro_replication/scripts/tmp_s5_output_20260328_183838_f.py
+2026-03-28 18:38:38,970 [INFO] figaro.tools — [s5_output] Script succeeded
+2026-03-28 18:39:27,648 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 18:40:14,124 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 18:41:02,882 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 18:41:53,995 [INFO] httpx — HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-03-28 18:41:54,002 [ERROR] figaro.s5_output — Output generation agent failed: Recursion limit of 15 reached without hitting a stop condition. You can increase the limit by setting the `recursion_limit` config key.
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT
+Traceback (most recent call last):
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/agents/nodes/s5_output_generation.py", line 96, in run_s5_output_generation
+    result = agent.invoke(
+        {"messages": [{"role": "user", "content": task_message}]},
+        config={"recursion_limit": 15},
+    )
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langgraph/pregel/main.py", line 3292, in invoke
+    for chunk in self.stream(
+                 ~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<10 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ):
+    ^
+  File "/Users/ilanpargamin/Dossiers importants non sync/figaro_replication/path/to/venv/lib/python3.14/site-packages/langgraph/pregel/main.py", line 2767, in stream
+    raise GraphRecursionError(msg)
+langgraph.errors.GraphRecursionError: Recursion limit of 15 reached without hitting a stop condition. You can increase the limit by setting the `recursion_limit` config key.
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT
+2026-03-28 18:41:54,009 [INFO] figaro.run_agentic — 
+Pipeline completed in 341.0s
+2026-03-28 18:41:54,009 [ERROR] figaro.run_agentic — ⚠️  Human intervention required. See errors above.
+2026-03-28 18:41:54,009 [ERROR] figaro.run_agentic —   Stage 5 exception: Recursion limit of 15 reached without hitting a stop condition. You can increase the limit by setting the `recursion_limit` config key.
+For troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT
+2026-03-28 18:41:54,009 [INFO] figaro.run_agentic — 
+============================================================
+2026-03-28 18:41:54,009 [INFO] figaro.run_agentic — PIPELINE METRICS SUMMARY
+2026-03-28 18:41:54,009 [INFO] figaro.run_agentic — ============================================================
+2026-03-28 18:41:54,009 [INFO] figaro.run_agentic —   s5: 341.0s  [FAILED: Recursion limit of 15 reached without hitting a stop conditi]
